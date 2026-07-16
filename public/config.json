@@ -1,0 +1,34 @@
+{
+  "developer": {
+    "name": "Ashit",
+    "title": "Software Engineer & MBA Candidate",
+    "bio": "Passionate about building scalable backend architectures, distributed systems, and bridging the gap between technology and fast growing businesses. Welcome to my Knowledge Nebula rocket journey!",
+    "avatar": "",
+    "socials": {
+      "github": "https://github.com/ashit1303",
+      "linkedin": "https://linkedin.com/in/kmrashit",
+      "email": "mailto:kmr.ashit1303@gmail.com",
+      "resume": "/assets/resume.pdf"
+    }
+  },
+  "theme": {
+    "backgroundGradStart": "#03030f",
+    "backgroundGradEnd": "#07071d",
+    "accentColor": "#00f0ff",
+    "glowColor": "#ff007f",
+    "highProficiencyColor": "#ff3b70",
+    "mediumProficiencyColor": "#00ffd2",
+    "lowProficiencyColor": "#bd00ff",
+    "starfieldColor": "#ffffff",
+    "constellationLinesColor": "#ffffff"
+  },
+  "rocket": {
+    "customModelPath": "",
+    "bodyColor": "#ffffff",
+    "finColor": "#ff3b70",
+    "windowColor": "#00ffd2",
+    "exhaustColor": "#ff6a00",
+    "scale": 1.0,
+    "speedMultiplier": 1.0
+  }
+}
