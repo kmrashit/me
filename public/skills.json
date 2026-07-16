@@ -26,13 +26,13 @@
     },
     {
       "name": "JavaScript",
-      "category": "Frontend",
+      "category": "Backend",
       "proficiency": "high",
       "description": "Advanced ES6+ JavaScript, asynchronous programming (Promises/async-await), closures, scoping, prototypes, and memory management."
     },
     {
       "name": "TypeScript",
-      "category": "Frontend",
+      "category": "Backend",
       "proficiency": "high",
       "description": "Strictly typed superset of JS. Strong knowledge of custom types, generics, interfaces, and decorators for scalable codebases."
     },

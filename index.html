@@ -1,131 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' ws://localhost:* wss://localhost:* http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data:; object-src 'none';" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <title>Knowledge Nebula | 3D Portfolio</title>
-  </head>
-  <body>
-    <!-- 3D Canvas Container -->
-    <div id="canvas-container"></div>
-    
-    <!-- Screen Space Labels Container -->
-    <div id="labels-container"></div>
 
-    <!-- UI Overlay Dashboard -->
-    <main class="ui-container">
-      
-      <!-- Sidebar Toggle (outside sidebar so it's never clipped) -->
-      <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Toggle sidebar">
-        <span id="sidebar-toggle-icon">◀</span>
-      </button>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' ws://localhost:* wss://localhost:* http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data:; object-src 'none';" />
 
-      <!-- Profile Glassmorphic Sidebar -->
-      <section class="glass-panel sidebar" id="profile-sidebar">
-        <div class="profile-header">
-          <div class="avatar-glow">
-            <span class="avatar-emoji">🚀</span>
-          </div>
-          <h1 id="dev-name" class="gradient-text">Loading...</h1>
-          <p id="dev-title" class="subtitle">Loading Title...</p>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <title>Knowledge Nebula | 3D Portfolio</title>
+</head>
+
+<body>
+  <!-- 3D Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Screen Space Labels Container -->
+  <div id="labels-container"></div>
+
+  <!-- UI Overlay Dashboard -->
+  <main class="ui-container">
+
+    <!-- Sidebar Toggle (outside sidebar so it's never clipped) -->
+    <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Toggle sidebar">
+      <span id="sidebar-toggle-icon">◀</span>
+    </button>
+
+    <!-- Profile Glassmorphic Sidebar -->
+    <section class="glass-panel sidebar" id="profile-sidebar">
+      <div class="profile-header">
+        <div class="avatar-glow">
+          <span class="avatar-emoji">🚀</span>
         </div>
-        
-        <p id="dev-bio" class="bio">
-          Loading bio...
+        <h1 id="dev-name" class="gradient-text">Loading...</h1>
+        <p id="dev-title" class="subtitle">Loading Title...</p>
+      </div>
+
+      <p id="dev-bio" class="bio">
+        Loading bio...
+      </p>
+
+      <!-- Category Filters -->
+      <div class="category-section">
+        <h3>Knowledge Constellations</h3>
+        <div class="filter-chips" id="filter-chips">
+          <button class="chip active" data-category="all" id="btn-cat-all">All Nodes</button>
+        </div>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="social-links" id="social-links">
+        <!-- Dynamically populated via JS -->
+      </div>
+
+      <div class="instruction-box">
+        <div class="instruction-row">
+          <span class="icon">🖱️</span>
+          <span>Drag to rotate, scroll to zoom</span>
+        </div>
+        <div class="instruction-row">
+          <span class="icon">✨</span>
+          <span>Hover nodes to see skills</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Controls Panel (Rocket Speed Control) -->
+    <section class="glass-panel speed-controller" id="speed-panel">
+      <div class="control-header">
+        <span class="panel-icon">⚡</span>
+        <h2>Warp Drive Engine</h2>
+      </div>
+
+      <div class="star-slider-row">
+        <span class="star-label">Speed</span>
+        <input type="range" min="0" max="20" value="5" class="speed-slider mini-slider" id="speed-slider" />
+        <span class="star-value" id="speed-value">5x</span>
+      </div>
+
+      <div class="star-slider-row">
+        <span class="star-label">Density</span>
+        <input type="range" min="200" max="3000" value="1200" id="star-count-slider" class="speed-slider mini-slider" />
+        <span class="star-value" id="star-count-value">1200</span>
+      </div>
+      <div class="star-slider-row">
+        <span class="star-label">Size</span>
+        <input type="range" min="1" max="10" value="3" id="star-size-slider" class="speed-slider mini-slider" />
+        <span class="star-value" id="star-size-value">3</span>
+      </div>
+    </section>
+
+    <!-- Details Glassmorphic Card (Right side) -->
+    <section class="glass-panel details-card hidden" id="details-card">
+      <button class="close-btn" id="close-details-btn">&times;</button>
+
+      <div class="details-header">
+        <span class="category-tag" id="skill-category">Backend</span>
+        <h2 id="skill-name">Redis</h2>
+        <div class="proficiency-badge" id="skill-proficiency">High Proficiency</div>
+      </div>
+
+      <div class="details-body">
+        <p id="skill-description">
+          In-memory database, caching, and pub/sub message broker.
         </p>
 
-        <!-- Category Filters -->
-        <div class="category-section">
-          <h3>Nebula Constellations</h3>
-          <div class="filter-chips" id="filter-chips">
-            <button class="chip active" data-category="all" id="btn-cat-all">All Nodes</button>
+        <div class="proficiency-meter-container">
+          <div class="meter-label">
+            <span>Proficiency Depth</span>
+            <span id="proficiency-percent">90%</span>
+          </div>
+          <div class="meter-track">
+            <div class="meter-fill" id="proficiency-fill"></div>
           </div>
         </div>
 
-        <!-- Social Icons -->
-        <div class="social-links" id="social-links">
-          <!-- Dynamically populated via JS -->
+        <div class="constellation-region">
+          <span class="region-title">Nebula Orbit</span>
+          <span class="region-desc" id="skill-region">Inner Sphere (Closest)</span>
         </div>
+      </div>
+    </section>
 
-        <div class="instruction-box">
-          <div class="instruction-row">
-            <span class="icon">🖱️</span>
-            <span>Drag to rotate, scroll to zoom</span>
-          </div>
-          <div class="instruction-row">
-            <span class="icon">✨</span>
-            <span>Hover nodes to see skills</span>
-          </div>
-        </div>
-      </section>
+  </main>
 
-      <!-- Center Controls Panel (Rocket Speed Control) -->
-      <section class="glass-panel speed-controller" id="speed-panel">
-        <div class="control-header">
-          <span class="panel-icon">⚡</span>
-          <h2>Warp Drive Engine</h2>
-        </div>
-        
-        <div class="star-slider-row">
-          <span class="star-label">Speed</span>
-          <input type="range" min="0" max="20" value="5" class="speed-slider mini-slider" id="speed-slider" />
-          <span class="star-value" id="speed-value">5x</span>
-        </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
 
-        <div class="star-slider-row">
-          <span class="star-label">Density</span>
-          <input type="range" min="200" max="3000" value="1200" id="star-count-slider" class="speed-slider mini-slider" />
-          <span class="star-value" id="star-count-value">1200</span>
-        </div>
-        <div class="star-slider-row">
-          <span class="star-label">Size</span>
-          <input type="range" min="1" max="10" value="3" id="star-size-slider" class="speed-slider mini-slider" />
-          <span class="star-value" id="star-size-value">3</span>
-        </div>
-      </section>
-
-      <!-- Details Glassmorphic Card (Right side) -->
-      <section class="glass-panel details-card hidden" id="details-card">
-        <button class="close-btn" id="close-details-btn">&times;</button>
-        
-        <div class="details-header">
-          <span class="category-tag" id="skill-category">Backend</span>
-          <h2 id="skill-name">Redis</h2>
-          <div class="proficiency-badge" id="skill-proficiency">High Proficiency</div>
-        </div>
-
-        <div class="details-body">
-          <p id="skill-description">
-            In-memory database, caching, and pub/sub message broker.
-          </p>
-          
-          <div class="proficiency-meter-container">
-            <div class="meter-label">
-              <span>Proficiency Depth</span>
-              <span id="proficiency-percent">90%</span>
-            </div>
-            <div class="meter-track">
-              <div class="meter-fill" id="proficiency-fill"></div>
-            </div>
-          </div>
-
-          <div class="constellation-region">
-            <span class="region-title">Nebula Orbit</span>
-            <span class="region-desc" id="skill-region">Inner Sphere (Closest)</span>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <script type="module" src="/src/main.js"></script>
-  </body>
 </html>

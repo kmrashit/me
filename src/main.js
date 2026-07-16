@@ -25,6 +25,7 @@ const mouse = new THREE.Vector2();
 
 // ─── Interaction State ───────────────────────────────────────────
 let currentSpeed = 5;
+let previousSpeed = 5;
 let activeCategory = 'all';
 let hoveredNode = null;
 let selectedNode = null;
@@ -935,6 +936,7 @@ function setupInteraction() {
     slider.addEventListener('input', (e) => {
       const speed = parseInt(e.target.value);
       updateSpeed(speed);
+      previousSpeed = speed;
     });
   }
 
@@ -945,6 +947,11 @@ function setupInteraction() {
       document.getElementById('details-card').classList.remove('visible');
       document.getElementById('details-card').classList.add('hidden');
       selectedNode = null;
+
+      // Restore previous speed
+      const slider = document.getElementById('speed-slider');
+      if (slider) slider.value = previousSpeed;
+      updateSpeed(previousSpeed);
     });
   }
 
@@ -1003,6 +1010,9 @@ function onClick() {
       selectedNode = clickedMesh;
       showSkillDetails(clickedMesh.userData.skill);
 
+      if (currentSpeed > 0) {
+        previousSpeed = currentSpeed;
+      }
       const slider = document.getElementById('speed-slider');
       if (slider) slider.value = 0;
       updateSpeed(0);
