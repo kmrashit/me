@@ -1,0 +1,153 @@
+/* Mobile and tablet responsive layout overrides */
+
+@media (max-width: 900px) {
+  body {
+    overflow: hidden !important; /* Prevent double scrollbars on mobile */
+  }
+
+  .ui-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 12px !important;
+    pointer-events: none !important;
+    display: block !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  
+  .glass-panel {
+    pointer-events: auto !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* Sidebar styles override */
+  .sidebar {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    width: 280px !important;
+    height: calc(100% - 24px) !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    z-index: 15 !important;
+    box-sizing: border-box !important;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(calc(-100% - 24px)) !important;
+  }
+
+  /* Sidebar Toggle Button repositioning */
+  .sidebar-toggle-btn {
+    position: absolute !important;
+    top: 50% !important;
+    left: 304px !important; /* 12px padding + 280px width + 12px gap */
+    transform: translateY(-50%) !important;
+    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    z-index: 20 !important;
+  }
+
+  .sidebar-toggle-btn.sidebar-hidden {
+    left: 12px !important;
+  }
+  
+  /* Warp Drive panel (speed controller) position */
+  .speed-controller {
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 320px !important;
+    margin: 0 !important;
+    padding: 10px 15px !important;
+    z-index: 10 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Details Card repositioning */
+  .details-card {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 280px !important;
+    height: calc(100% - 24px) !important;
+    margin: 0 !important;
+    max-height: none !important;
+    z-index: 15 !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+    display: none !important;
+  }
+
+  .details-card.visible {
+    display: flex !important;
+  }
+}
+
+/* Extra overrides for short landscape screens (like phones in landscape) */
+@media (max-width: 900px) and (max-height: 500px) {
+  .ui-container {
+    padding: 6px !important;
+  }
+
+  .sidebar {
+    top: 6px !important;
+    left: 6px !important;
+    width: 240px !important;
+    height: calc(100% - 12px) !important;
+    padding: 15px 12px !important;
+  }
+
+  .sidebar-toggle-btn {
+    left: 252px !important; /* 6px padding + 240px width + 6px gap */
+  }
+
+  .sidebar-toggle-btn.sidebar-hidden {
+    left: 6px !important;
+  }
+
+  .speed-controller {
+    bottom: 6px !important;
+    width: 260px !important;
+    padding: 6px 10px !important;
+  }
+
+  .speed-controller h2 {
+    font-size: 12px !important;
+    margin: 0 !important;
+  }
+  
+  .speed-controller .control-header {
+    margin-bottom: 6px !important;
+  }
+
+  .star-slider-row {
+    margin-bottom: 4px !important;
+    font-size: 11px !important;
+  }
+
+  .speed-slider.mini-slider {
+    height: 3px !important;
+  }
+
+  .details-card {
+    top: 6px !important;
+    right: 6px !important;
+    width: 240px !important;
+    height: calc(100% - 12px) !important;
+    padding: 15px 12px !important;
+  }
+
+  .details-header h2 {
+    font-size: 18px !important;
+  }
+
+  .escape-btn {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+}

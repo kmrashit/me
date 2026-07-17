@@ -831,3 +831,66 @@ h1.gradient-text {
     display: flex;
   }
 }
+
+/* Rotate Device Overlay */
+#rotate-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 18, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 99999;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Outfit', sans-serif;
+  box-sizing: border-box;
+}
+
+#rotate-overlay .phone-icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+  animation: rotate-anim 2s infinite ease-in-out;
+}
+
+#rotate-overlay h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#rotate-overlay p {
+  font-size: 15px;
+  margin: 0;
+  opacity: 0.8;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+@keyframes rotate-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+/* Show only on small portrait screens */
+@media (max-width: 900px) and (orientation: portrait) {
+  #rotate-overlay {
+    display: flex;
+  }
+}
