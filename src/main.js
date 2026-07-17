@@ -1,4 +1,5 @@
 import './style.css';
+import { startIntro } from './intro.js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -24,8 +25,8 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 // ─── Interaction State ───────────────────────────────────────────
-let currentSpeed = 5;
-let previousSpeed = 5;
+let currentSpeed = 1;
+let previousSpeed = 1;
 let activeCategory = 'all';
 let hoveredNode = null;
 let selectedNode = null;
@@ -181,7 +182,7 @@ function generateMeteoriteTexture() {
 // INIT
 // ═════════════════════════════════════════════════════════════════
 
-async function initApp() {
+async function initApp(visitorName) {
   try {
     const configRes = await fetch('./config.json');
     configData = await configRes.json();
@@ -190,6 +191,16 @@ async function initApp() {
     skillsData = await skillsRes.json();
 
     applyConfigToUI(configData);
+
+    if (visitorName) {
+      const crewStatus = document.getElementById('crew-status');
+      const badge = document.getElementById('visitor-name-badge');
+      if (badge && crewStatus) {
+        badge.textContent = visitorName;
+        crewStatus.classList.remove('hidden');
+      }
+    }
+
     setupScene();
     setupWarpStars();
     setupRocket();
@@ -580,7 +591,8 @@ function setupRocket() {
 // ═════════════════════════════════════════════════════════════════
 
 function createExhaustParticle() {
-  const count = Math.max(1, Math.floor(currentSpeed / 2.5));
+  const mappedSpeed = currentSpeed * 0.7;
+  const count = Math.max(1, Math.floor(mappedSpeed / 2.5));
   const rocketCfg = configData?.rocket || {};
   const exhaustColor = new THREE.Color(rocketCfg.exhaustColor || '#ff6a00');
 
@@ -616,7 +628,7 @@ function createExhaustParticle() {
     // Velocity primarily downward (-Y)
     const velocity = new THREE.Vector3(
       (Math.random() - 0.5) * 0.12 + Math.cos(ringAngle) * 0.05,
-      -(1.0 + Math.random() * (0.6 + currentSpeed * 0.06)),
+      -(1.0 + Math.random() * (0.6 + mappedSpeed * 0.06)),
       (Math.random() - 0.5) * 0.12 + Math.sin(ringAngle) * 0.05
     );
 
@@ -1082,7 +1094,7 @@ function onWindowResize() {
 // ═════════════════════════════════════════════════════════════════
 
 function createCometTrail(node) {
-  if (currentSpeed < 2 || Math.random() > 0.3) return;
+  if (currentSpeed < 1 || Math.random() > 0.3) return;
   const worldPos = new THREE.Vector3();
   node.getWorldPosition(worldPos);
   const size = 0.05 + Math.random() * 0.05;
@@ -1148,8 +1160,9 @@ function animate() {
   }
 
   // ── 3. Animate flame cones (pulse with speed) ──
+  const mappedSpeed = currentSpeed * 0.7;
   if (flameGroup) {
-    const speedFactor = currentSpeed / 20;
+    const speedFactor = mappedSpeed / 20;
     const pulse = 0.85 + Math.sin(elapsed * 12) * 0.15;
     const flameScale = (0.4 + speedFactor * 0.6) * pulse;
 
@@ -1166,13 +1179,13 @@ function animate() {
 
   // ── 4. Camera FOV ──
   if (camera) {
-    const targetFov = baseFov + (currentSpeed / 20) * 12;
+    const targetFov = baseFov + (mappedSpeed / 20) * 12;
     if (Math.abs(camera.fov - targetFov) > 0.05) {
       camera.fov += (targetFov - camera.fov) * 0.05;
       camera.updateProjectionMatrix();
     }
-    if (currentSpeed > 15) {
-      const shake = (currentSpeed - 15) * 0.002;
+    if (currentSpeed > 7) {
+      const shake = (currentSpeed - 7) * 0.0025;
       camera.position.x += (Math.random() - 0.5) * shake;
       camera.position.y += (Math.random() - 0.5) * shake;
     }
@@ -1180,14 +1193,14 @@ function animate() {
 
   // ── 5. Stars streak downward (-Y) ──
   if (stars && starPositions) {
-    const velocityScale = currentSpeed * 0.7 + 0.04;
+    const velocityScale = mappedSpeed * 0.7 + 0.04;
     const sizeMul = starSizeMultiplier / 3; // Normalize around default of 3
 
     for (let i = 0; i < starCount; i++) {
       let headY = starPositions.getY(i * 2);
       headY -= starSpeeds[i] * velocityScale;
 
-      const lineStretch = (0.15 + currentSpeed * 0.7 * starSpeeds[i]) * sizeMul;
+      const lineStretch = (0.15 + mappedSpeed * 0.7 * starSpeeds[i]) * sizeMul;
 
       if (headY < -125) {
         headY = 125;
@@ -1205,7 +1218,7 @@ function animate() {
 
   // ── 6. Rotate nebula ──
   if (skillsNebulaGroup) {
-    const rotSpeed = 0.0002 + (currentSpeed / 20) * 0.006;
+    const rotSpeed = 0.0002 + (mappedSpeed / 20) * 0.006;
     skillsNebulaGroup.rotation.y += rotSpeed;
     skillsNebulaGroup.rotation.x = Math.sin(elapsed * 0.15) * 0.06;
 
@@ -1296,4 +1309,8 @@ function animate() {
 // ═════════════════════════════════════════════════════════════════
 // BOOT
 // ═════════════════════════════════════════════════════════════════
-window.onload = initApp;
+window.onload = () => {
+  startIntro((visitorName) => {
+    initApp(visitorName);
+  });
+};

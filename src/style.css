@@ -7,12 +7,12 @@
   --panel-bg: rgba(8, 8, 20, 0.55);
   --panel-border: rgba(255, 255, 255, 0.07);
   --panel-glow: rgba(0, 240, 255, 0.15);
-  
+
   --text-main: #f3f3f6;
   --text-muted: #9e9eb3;
   --accent: #00f0ff;
   --glow-pink: #ff007f;
-  
+
   --high-prof: #ff3b70;
   --med-prof: #00ffd2;
   --low-prof: #bd00ff;
@@ -155,7 +155,8 @@ body {
 .sidebar-toggle-btn {
   position: absolute;
   top: 50%;
-  left: 380px; /* 24px sidebar-left + 350px sidebar-width + 6px gap */
+  left: 380px;
+  /* 24px sidebar-left + 350px sidebar-width + 6px gap */
   transform: translateY(-50%);
   width: 24px;
   height: 52px;
@@ -217,8 +218,13 @@ body {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .avatar-emoji {
@@ -375,20 +381,31 @@ h1.gradient-text {
 
 /* 2. Speed Controller Panel (Bottom Center) */
 .speed-controller {
-  bottom: 24px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   width: 440px;
-  padding: 20px 24px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  background: rgba(4, 8, 16, 0.45);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-bottom: none;
+  box-shadow: 0 -5px 20px rgba(0, 240, 255, 0.1), inset 0 0 10px rgba(0, 240, 255, 0.05);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  position: absolute;
 }
 
 .control-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: 100%;
 }
 
 .control-header .panel-icon {
@@ -398,18 +415,31 @@ h1.gradient-text {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 4px var(--accent)); }
-  100% { transform: scale(1); opacity: 0.8; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
 .control-header h2 {
   font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   color: #ffffff;
+  text-shadow: 0 0 0px var(--accent);
 }
 
 .slider-container {
@@ -433,7 +463,8 @@ h1.gradient-text {
   width: 100%;
   height: 6px;
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.15);
   outline: none;
   cursor: pointer;
   transition: background 0.3s;
@@ -458,7 +489,8 @@ h1.gradient-text {
   background: var(--accent);
   box-shadow: 0 0 10px var(--accent);
   cursor: pointer;
-  margin-top: -5px; /* Offset to center relative to track height */
+  margin-top: -5px;
+  /* Offset to center relative to track height */
   transition: transform 0.1s ease, box-shadow 0.2s ease;
 }
 
@@ -531,7 +563,8 @@ h1.gradient-text {
   padding: 30px 24px;
   display: flex;
   flex-direction: column;
-  transform: translateX(380px); /* Initially slide out */
+  transform: translateX(380px);
+  /* Initially slide out */
   opacity: 0;
   visibility: hidden;
   z-index: 15;
@@ -607,9 +640,17 @@ h1.gradient-text {
 }
 
 /* Custom indicator color variables */
-.badge-high { color: var(--high-prof); }
-.badge-medium { color: var(--med-prof); }
-.badge-low { color: var(--low-prof); }
+.badge-high {
+  color: var(--high-prof);
+}
+
+.badge-medium {
+  color: var(--med-prof);
+}
+
+.badge-low {
+  color: var(--low-prof);
+}
 
 .details-body {
   display: flex;
@@ -661,13 +702,18 @@ h1.gradient-text {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
   animation: shine 2s infinite linear;
 }
 
 @keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .constellation-region {
@@ -699,7 +745,7 @@ h1.gradient-text {
   body {
     overflow-y: auto;
   }
-  
+
   .ui-container {
     position: relative;
     display: flex;
@@ -737,7 +783,8 @@ h1.gradient-text {
 
   .details-card {
     order: 3;
-    display: none; /* Only show overlay or bottom sheet */
+    display: none;
+    /* Only show overlay or bottom sheet */
   }
 
   .details-card.visible {

@@ -1,0 +1,329 @@
+/* Onboarding Loading Page Styling */
+
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0b0b26 0%, #03030c 100%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--text-main, #f3f3f6);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Glassmorphic Form Card */
+.intro-card {
+  width: 440px;
+  padding: 40px;
+  background: rgba(10, 10, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 24px 64px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 240, 255, 0.12);
+  text-align: center;
+  z-index: 10;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.intro-card.hidden {
+  opacity: 0;
+  transform: scale(0.9) translateY(30px);
+  pointer-events: none;
+}
+
+.intro-card h1 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #00f0ff 0%, #ff007f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro-card p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--text-muted, #9e9eb3);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+}
+
+.input-container input:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.intro-card button {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #00f0ff, #00ffd2);
+  color: #03030c;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.intro-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.45);
+  filter: brightness(1.05);
+}
+
+.intro-card button:active {
+  transform: translateY(1px);
+}
+
+/* Boarding Animation Stage */
+.stage-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.stage-container.active {
+  opacity: 1;
+}
+
+/* Vector Illustration Styles */
+.launch-pad-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Animations & Keyframes */
+.avatar {
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+}
+
+.speech-bubble {
+  opacity: 0;
+  transform: scale(0.8) translate(-50%, -100%);
+  transform-origin: bottom left;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speech-bubble.visible {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -100%);
+}
+
+.rocket-vessel {
+  transform-origin: bottom center;
+  transition: transform 0.5s ease;
+}
+
+/* Engine Flames */
+.engine-flame {
+  opacity: 0;
+  transform: scaleY(0.1);
+  transform-origin: top center;
+  transition: all 0.4s ease;
+}
+
+.stage-container.igniting .engine-flame {
+  opacity: 1;
+  animation: flame-pulse 0.15s infinite alternate;
+}
+
+/* Smoke particles styling */
+.smoke-cloud {
+  opacity: 0;
+  transform: scale(0.5);
+  transform-origin: center;
+  transition: all 0.5s ease;
+}
+
+.stage-container.igniting .smoke-cloud {
+  opacity: 0.8;
+  animation: smoke-drift 2s infinite ease-out;
+}
+
+/* Screen Shaking Effect */
+@keyframes screen-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-2px, -2px) rotate(-0.5deg); }
+  20% { transform: translate(2px, 1px) rotate(0.5deg); }
+  30% { transform: translate(-1px, 2px) rotate(0deg); }
+  40% { transform: translate(3px, -1px) rotate(0.5deg); }
+  50% { transform: translate(-2px, 2px) rotate(-0.5deg); }
+  60% { transform: translate(2px, -2px) rotate(0deg); }
+  70% { transform: translate(-1px, -1px) rotate(0.5deg); }
+  80% { transform: translate(3px, 2px) rotate(-0.5deg); }
+  90% { transform: translate(-2px, -1px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shaking {
+  animation: screen-shake 0.12s infinite;
+}
+
+/* Rocket Launch Liftoff */
+@keyframes liftoff {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+  100% { transform: translateY(-700px); }
+}
+
+.stage-container.liftoff .rocket-vessel {
+  animation: liftoff 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+/* Twinkling Stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.twinkle-star {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.twinkle-star:nth-child(odd) {
+  animation-delay: 0.7s;
+  animation-duration: 2.5s;
+}
+
+.twinkle-star:nth-child(3n) {
+  animation-delay: 1.3s;
+  animation-duration: 3s;
+}
+
+/* Beacon Blink */
+@keyframes beacon-blink {
+  0%, 70%, 100% { opacity: 0.3; }
+  75%, 95% { opacity: 1; }
+}
+
+.beacon-blink {
+  animation: beacon-blink 1.5s ease-in-out infinite;
+}
+
+/* Footprints fade-in */
+.footprints {
+  transition: opacity 1s ease;
+}
+
+/* Warp Flash Layer */
+#warp-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  mix-blend-mode: overlay;
+  z-index: 100000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+#warp-flash.active {
+  opacity: 1;
+  background: radial-gradient(circle at center, #ffffff 0%, #00f0ff 70%, #03030c 100%);
+  mix-blend-mode: normal;
+}
+
+@keyframes flame-pulse {
+  0% { transform: scaleY(0.8) scaleX(0.9); }
+  100% { transform: scaleY(1.3) scaleX(1.1); }
+}
+
+@keyframes smoke-drift {
+  0% { transform: translate(0, 0) scale(0.8); opacity: 0.3; }
+  50% { transform: translate(-20px, 10px) scale(1.2); opacity: 0.7; }
+  100% { transform: translate(-40px, 20px) scale(1.5); opacity: 0; }
+}
+
+/* Crew Badge Styles on Main Page */
+.crew-status {
+  margin-top: -10px;
+  margin-bottom: 28px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crew-status.hidden {
+  display: none;
+}
+
+.crew-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #00ffd2;
+  padding: 3px 6px;
+  background: rgba(0, 255, 210, 0.1);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.crew-names {
+  font-size: 13px;
+  color: var(--text-main);
+  font-weight: 500;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
