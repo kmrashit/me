@@ -29,6 +29,6 @@
     "windowColor": "#00ffd2",
     "exhaustColor": "#ff6a00",
     "scale": 1.0,
-    "speedMultiplier": 1.0
+    "speedMultiplier": 0.3
   }
 }
