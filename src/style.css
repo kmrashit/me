@@ -99,6 +99,16 @@ body {
   box-shadow: 0 0 12px var(--accent);
 }
 
+.node-label.sun-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(4, 8, 20, 0.95);
+  border-width: 1.5px;
+}
+
 /* UI Overlay Layer */
 .ui-container {
   position: absolute;

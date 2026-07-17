@@ -409,7 +409,25 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
     boosterNose.setAttribute('fill', 'url(#rocket-nose)');
     rocketGroup.appendChild(boosterNose);
 
-    // Booster nozzle
+    // Booster flames (created first so they render behind the nozzle mouth)
+    const bFlameOuter = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    bFlameOuter.setAttribute('class', 'engine-flame');
+    bFlameOuter.setAttribute('d', `M ${bx - 3.5} 350 Q ${bx} 395 ${bx + 3.5} 350 Z`);
+    bFlameOuter.setAttribute('fill', '#ff6600');
+    bFlameOuter.setAttribute('opacity', '0.4');
+    bFlameOuter.setAttribute('filter', 'url(#neon-glow)');
+    bFlameOuter.style.transformOrigin = `${bx}px 350px`;
+    rocketGroup.appendChild(bFlameOuter);
+
+    const bFlameInner = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    bFlameInner.setAttribute('class', 'engine-flame');
+    bFlameInner.setAttribute('d', `M ${bx - 2} 350 Q ${bx} 380 ${bx + 2} 350 Z`);
+    bFlameInner.setAttribute('fill', '#ffffcc');
+    bFlameInner.setAttribute('opacity', '0.75');
+    bFlameInner.style.transformOrigin = `${bx}px 350px`;
+    rocketGroup.appendChild(bFlameInner);
+
+    // Booster nozzle (renders on top of flames to mask them correctly)
     const bNozzle = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     bNozzle.setAttribute('d', `M ${bx - 6} 340 L ${bx - 4} 350 L ${bx + 4} 350 L ${bx + 6} 340 Z`);
     bNozzle.setAttribute('fill', '#1a1a2e');
@@ -418,7 +436,7 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
     // Booster exhaust ring
     const bRing = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     bRing.setAttribute('cx', String(bx));
-    bRing.setAttribute('cy', '351');
+    bRing.setAttribute('cy', '350');
     bRing.setAttribute('rx', '5');
     bRing.setAttribute('ry', '2');
     bRing.setAttribute('fill', 'none');
@@ -437,22 +455,6 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
     bFinR.setAttribute('d', `M ${bx + 7} 340 L ${bx + 14} 348 L ${bx + 7} 315 Z`);
     bFinR.setAttribute('fill', '#ff3b70');
     rocketGroup.appendChild(bFinR);
-
-    // Booster flames (hidden, shown on ignition)
-    const bFlameOuter = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    bFlameOuter.setAttribute('class', 'engine-flame');
-    bFlameOuter.setAttribute('d', `M ${bx - 5} 351 Q ${bx} 395 ${bx + 5} 351 Z`);
-    bFlameOuter.setAttribute('fill', '#ff6600');
-    bFlameOuter.setAttribute('opacity', '0.4');
-    bFlameOuter.setAttribute('filter', 'url(#neon-glow)');
-    rocketGroup.appendChild(bFlameOuter);
-
-    const bFlameInner = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    bFlameInner.setAttribute('class', 'engine-flame');
-    bFlameInner.setAttribute('d', `M ${bx - 3} 351 Q ${bx} 380 ${bx + 3} 351 Z`);
-    bFlameInner.setAttribute('fill', '#ffffcc');
-    bFlameInner.setAttribute('opacity', '0.75');
-    rocketGroup.appendChild(bFlameInner);
   });
 
   // ── Main Engine Flames (hidden initially, shown on ignition) ──
@@ -463,6 +465,7 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
   flameOuter.setAttribute('fill', '#ff3300');
   flameOuter.setAttribute('opacity', '0.3');
   flameOuter.setAttribute('filter', 'url(#neon-glow)');
+  flameOuter.style.transformOrigin = '450px 352px';
   rocketGroup.appendChild(flameOuter);
 
   // Mid flame (orange)
@@ -472,6 +475,7 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
   flameMid.setAttribute('fill', '#ff8800');
   flameMid.setAttribute('opacity', '0.55');
   flameMid.setAttribute('filter', 'url(#neon-glow)');
+  flameMid.style.transformOrigin = '450px 352px';
   rocketGroup.appendChild(flameMid);
 
   // Inner flame (white-hot core)
@@ -480,6 +484,7 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
   flameInner.setAttribute('d', 'M 443 352 Q 450 400 457 352 Z');
   flameInner.setAttribute('fill', '#ffffcc');
   flameInner.setAttribute('opacity', '0.85');
+  flameInner.style.transformOrigin = '450px 352px';
   rocketGroup.appendChild(flameInner);
 
   // ── 4 Main Fins (showing 2 front-facing) ──
