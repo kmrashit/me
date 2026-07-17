@@ -16,6 +16,7 @@ let starPositions, starSpeeds;
 let starCount = 1200;
 let starSizeMultiplier = 3;
 let skillsNebulaGroup;
+let solarSystems = [];
 let cometParticles = [];
 let beaconLight;
 let celestialBodies = []; // Meteorites, moons, sun, galaxy
@@ -766,67 +767,122 @@ function setupCelestialBodies() {
 function setupNebulaSkills() {
   skillsNebulaGroup = new THREE.Group();
   scene.add(skillsNebulaGroup);
+  solarSystems = [];
 
   const skills = skillsData?.skills || [];
   const labelContainer = document.getElementById('labels-container');
   if (labelContainer) labelContainer.replaceChildren();
 
-  const corridors = {
-    high:   { min: 5.5,  max: 7.5,  color: themeColors.high },
-    medium: { min: 11.0, max: 13.5, color: themeColors.medium },
-    low:    { min: 17.5, max: 20.5, color: themeColors.low }
-  };
-
-  const categories = new Set();
-  const grouped = { high: [], medium: [], low: [] };
-
+  // Group skills by category
+  const categoriesMap = {};
   skills.forEach((skill, idx) => {
-    const prof = skill.proficiency.toLowerCase();
-    if (grouped[prof]) {
-      grouped[prof].push({ skill, idx });
-    } else {
-      grouped.medium.push({ skill, idx });
+    if (!categoriesMap[skill.category]) {
+      categoriesMap[skill.category] = [];
     }
+    categoriesMap[skill.category].push({ skill, idx });
   });
 
-  Object.keys(grouped).forEach(prof => {
-    const items = grouped[prof];
-    const corridor = corridors[prof];
-    const n = items.length;
+  const categories = new Set(Object.keys(categoriesMap));
 
-    items.forEach((item, i) => {
-      categories.add(item.skill.category);
+  Object.keys(categoriesMap).forEach(cat => {
+    const catSkills = categoriesMap[cat];
 
-      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-      const theta = goldenAngle * i;
-      const phi = Math.acos(1 - (2 * (i + 0.5)) / Math.max(n, 1));
-      const radius = corridor.min + Math.random() * (corridor.max - corridor.min);
+    // Determine dominant proficiency
+    const profCounts = { high: 0, medium: 0, low: 0 };
+    catSkills.forEach(item => {
+      const p = item.skill.proficiency.toLowerCase();
+      if (profCounts[p] !== undefined) profCounts[p]++;
+    });
 
-      const x = radius * Math.sin(phi) * Math.cos(theta);
-      const y = radius * Math.cos(phi);
-      const z = radius * Math.sin(phi) * Math.sin(theta);
+    let domProf = 'medium';
+    let maxCount = -1;
+    Object.keys(profCounts).forEach(p => {
+      if (profCounts[p] > maxCount) {
+        maxCount = profCounts[p];
+        domProf = p;
+      }
+    });
 
-      const nodeSize = prof === 'high' ? 0.55 : prof === 'medium' ? 0.45 : 0.38;
-      const nodeGeo = new THREE.SphereGeometry(nodeSize, 16, 16);
-      const nodeMat = new THREE.MeshBasicMaterial({ color: corridor.color, transparent: true, opacity: 0.95 });
-      const mesh = new THREE.Mesh(nodeGeo, nodeMat);
-      mesh.position.set(x, y, z);
+    // Corridor range
+    let minR, maxR;
+    if (domProf === 'high') { minR = 5; maxR = 10; }
+    else if (domProf === 'medium') { minR = 10; maxR = 18; }
+    else { minR = 18; maxR = 28; }
 
-      // Glow ring
-      const glowGeo = new THREE.RingGeometry(nodeSize * 1.2, nodeSize * 1.7, 24);
-      const glowMat = new THREE.MeshBasicMaterial({
-        color: corridor.color, transparent: true, opacity: 0.15, side: THREE.DoubleSide
-      });
-      const glowRing = new THREE.Mesh(glowGeo, glowMat);
-      glowRing.position.copy(mesh.position);
-      glowRing.lookAt(0, 0, 0);
-      skillsNebulaGroup.add(glowRing);
+    const r = minR + Math.random() * (maxR - minR);
+    const theta = Math.random() * Math.PI * 2;
+    const x = r * Math.cos(theta);
+    const z = r * Math.sin(theta);
+    const y = -100 + Math.random() * 200; // -100 to +100
 
-      mesh.userData = {
-        skill: item.skill, baseColor: corridor.color, index: item.idx,
-        proficiency: prof, radius, glowRing
+    // Random vivid color (HSL)
+    const h = Math.random();
+    const s = 0.7 + Math.random() * 0.2; // 70-90%
+    const l = 0.5 + Math.random() * 0.15; // 50-65%
+    const color = new THREE.Color().setHSL(h, s, l);
+
+    const group = new THREE.Group();
+    group.position.set(x, y, z);
+    skillsNebulaGroup.add(group);
+
+    // Central Sun
+    const sunRadius = 0.8 + catSkills.length * 0.1;
+    const sunGeo = new THREE.IcosahedronGeometry(sunRadius, 2);
+    const sunMat = new THREE.MeshBasicMaterial({ color: color });
+    const sunMesh = new THREE.Mesh(sunGeo, sunMat);
+    group.add(sunMesh);
+
+    // Sun Corona
+    const coronaGeo = new THREE.RingGeometry(sunRadius * 1.2, sunRadius * 1.6, 32);
+    const coronaMat = new THREE.MeshBasicMaterial({
+      color: color, transparent: true, opacity: 0.2, side: THREE.DoubleSide
+    });
+    const corona = new THREE.Mesh(coronaGeo, coronaMat);
+    corona.rotation.x = Math.PI / 2; // Flat on the orbital plane (XZ plane)
+    group.add(corona);
+
+    const planetMeshes = [];
+    const orbitLines = [];
+
+    // Planets
+    catSkills.forEach((item, i) => {
+      const p = item.skill.proficiency.toLowerCase();
+      const nodeSize = p === 'high' ? 0.55 : p === 'medium' ? 0.45 : 0.38;
+      const orbitRadius = sunRadius + 1.0 + i * 1.2;
+
+      // Orbit Ring
+      const orbitGeo = new THREE.BufferGeometry();
+      const orbitPoints = [];
+      for (let j = 0; j <= 64; j++) {
+        const a = (j / 64) * Math.PI * 2;
+        orbitPoints.push(new THREE.Vector3(Math.cos(a) * orbitRadius, 0, Math.sin(a) * orbitRadius));
+      }
+      orbitGeo.setFromPoints(orbitPoints);
+      const orbitMat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.3 });
+      const orbitLine = new THREE.LineLoop(orbitGeo, orbitMat);
+      group.add(orbitLine);
+      orbitLines.push(orbitLine);
+
+      // Planet Mesh
+      const planetGeo = new THREE.SphereGeometry(nodeSize, 16, 16);
+      const planetMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.95 });
+      const planet = new THREE.Mesh(planetGeo, planetMat);
+
+      const angle = Math.random() * Math.PI * 2;
+      planet.position.set(Math.cos(angle) * orbitRadius, 0, Math.sin(angle) * orbitRadius);
+
+      planet.userData = {
+        skill: item.skill,
+        baseColor: color,
+        index: item.idx,
+        proficiency: p,
+        orbitRadius: orbitRadius,
+        angle: angle,
+        orbitSpeed: 0.01 + Math.random() * 0.02
       };
-      skillsNebulaGroup.add(mesh);
+
+      group.add(planet);
+      planetMeshes.push(planet);
 
       // HTML Label
       const label = document.createElement('div');
@@ -834,51 +890,29 @@ function setupNebulaSkills() {
       label.setAttribute('id', `label-${item.idx}`);
       label.textContent = item.skill.name;
 
-      const hexColor = '#' + corridor.color.toString(16).padStart(6, '0');
+      const hexColor = '#' + color.getHexString();
       label.style.borderColor = `${hexColor}44`;
       label.style.boxShadow = `0 0 10px ${hexColor}22`;
 
       labelContainer.appendChild(label);
-      mesh.userData.labelElement = label;
+      planet.userData.labelElement = label;
+    });
+
+    solarSystems.push({
+      group,
+      category: cat,
+      skills: catSkills,
+      color,
+      proficiency: domProf,
+      corridorRange: { min: minR, max: maxR },
+      sunMesh,
+      corona,
+      orbitLines,
+      planetMeshes
     });
   });
 
   setupCategoryChips(categories);
-  drawOrbitalConstellations();
-}
-
-function drawOrbitalConstellations() {
-  const meshNodes = skillsNebulaGroup.children.filter(c => c instanceof THREE.Mesh && c.userData.skill);
-  const categoriesMap = {};
-
-  meshNodes.forEach(node => {
-    const cat = node.userData.skill.category;
-    if (!categoriesMap[cat]) categoriesMap[cat] = [];
-    categoriesMap[cat].push(node);
-  });
-
-  Object.keys(categoriesMap).forEach(cat => {
-    const catNodes = categoriesMap[cat];
-    if (catNodes.length < 2) return;
-
-    catNodes.sort((a, b) => {
-      return Math.atan2(a.position.z, a.position.x) - Math.atan2(b.position.z, b.position.x);
-    });
-
-    const points = [];
-    for (let i = 0; i < catNodes.length; i++) {
-      points.push(catNodes[i].position.clone());
-      points.push(catNodes[(i + 1) % catNodes.length].position.clone());
-    }
-
-    const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-    const lineMat = new THREE.LineBasicMaterial({
-      color: themeColors.constellation, transparent: true, opacity: 0.12
-    });
-    const lines = new THREE.LineSegments(lineGeo, lineMat);
-    lines.userData = { category: cat };
-    skillsNebulaGroup.add(lines);
-  });
 }
 
 // ═════════════════════════════════════════════════════════════════
@@ -915,15 +949,31 @@ function setupCategoryChips(categories) {
 }
 
 function filterNebulaNodes() {
-  skillsNebulaGroup.children.forEach(child => {
-    if (child instanceof THREE.Mesh && child.userData.skill) {
-      const match = (activeCategory === 'all' || child.userData.skill.category === activeCategory);
-      child.material.opacity = match ? 0.95 : 0.12;
-      child.scale.set(match ? 1 : 0.5, match ? 1 : 0.5, match ? 1 : 0.5);
-      if (child.userData.glowRing) child.userData.glowRing.material.opacity = match ? 0.15 : 0.03;
-    } else if (child instanceof THREE.LineSegments && child.userData.category) {
-      child.material.opacity = (activeCategory === 'all' || child.userData.category === activeCategory) ? 0.12 : 0.02;
-    }
+  solarSystems.forEach(sys => {
+    const match = (activeCategory === 'all' || sys.category === activeCategory);
+    const sunOpacity = match ? 1.0 : 0.1;
+    const coronaOpacity = match ? 0.2 : 0.02;
+    const planetOpacity = match ? 0.95 : 0.12;
+    const orbitOpacity = match ? 0.3 : 0.02;
+    const scale = match ? 1.0 : 0.5;
+
+    sys.sunMesh.material.opacity = sunOpacity;
+    sys.sunMesh.material.transparent = true;
+    sys.sunMesh.scale.set(scale, scale, scale);
+
+    sys.corona.material.opacity = coronaOpacity;
+    sys.corona.scale.set(scale, scale, scale);
+
+    sys.orbitLines.forEach(line => {
+      line.material.opacity = orbitOpacity;
+      line.scale.set(scale, scale, scale);
+    });
+
+    sys.planetMeshes.forEach(planet => {
+      planet.material.opacity = planetOpacity;
+      // The radius logic means we can just scale the planet geometry, but scaling the mesh also works
+      planet.scale.set(scale, scale, scale);
+    });
   });
 }
 
@@ -1013,8 +1063,11 @@ function updateSpeed(speed) {
 
 function onClick() {
   raycaster.setFromCamera(mouse, camera);
-  const meshNodes = skillsNebulaGroup.children.filter(c => c instanceof THREE.Mesh && c.userData.skill);
-  const intersects = raycaster.intersectObjects(meshNodes);
+  const allPlanets = [];
+  solarSystems.forEach(sys => {
+    allPlanets.push(...sys.planetMeshes);
+  });
+  const intersects = raycaster.intersectObjects(allPlanets);
 
   if (intersects.length > 0) {
     const clickedMesh = intersects[0].object;
@@ -1216,16 +1269,31 @@ function animate() {
     starPositions.needsUpdate = true;
   }
 
-  // ── 6. Rotate nebula ──
-  if (skillsNebulaGroup) {
-    const rotSpeed = 0.0002 + (mappedSpeed / 20) * 0.006;
-    skillsNebulaGroup.rotation.y += rotSpeed;
-    skillsNebulaGroup.rotation.x = Math.sin(elapsed * 0.15) * 0.06;
+  // ── 6. Fly Solar Systems ──
+  solarSystems.forEach(sys => {
+    // Translate system downward
+    sys.group.position.y -= mappedSpeed * 0.5;
 
-    skillsNebulaGroup.children.forEach(node => {
-      if (node instanceof THREE.Mesh && node.userData.skill) createCometTrail(node);
+    // Respawn logic
+    if (sys.group.position.y < -140) {
+      sys.group.position.y = 140;
+      const r = sys.corridorRange.min + Math.random() * (sys.corridorRange.max - sys.corridorRange.min);
+      const theta = Math.random() * Math.PI * 2;
+      sys.group.position.x = r * Math.cos(theta);
+      sys.group.position.z = r * Math.sin(theta);
+    }
+
+    // Animate planets orbiting the sun
+    sys.planetMeshes.forEach(planet => {
+      const data = planet.userData;
+      data.angle += data.orbitSpeed;
+      planet.position.set(
+        Math.cos(data.angle) * data.orbitRadius,
+        0,
+        Math.sin(data.angle) * data.orbitRadius
+      );
     });
-  }
+  });
 
   // ── 7. Animate celestial bodies ──
   celestialBodies.forEach(body => {
@@ -1251,8 +1319,11 @@ function animate() {
 
   // ── 9. Raycaster hover ──
   raycaster.setFromCamera(mouse, camera);
-  const meshNodes = skillsNebulaGroup.children.filter(c => c instanceof THREE.Mesh && c.userData.skill);
-  const intersects = raycaster.intersectObjects(meshNodes);
+  const allPlanets = [];
+  solarSystems.forEach(sys => {
+    allPlanets.push(...sys.planetMeshes);
+  });
+  const intersects = raycaster.intersectObjects(allPlanets);
 
   if (hoveredNode) {
     hoveredNode.scale.set(1, 1, 1);
@@ -1276,8 +1347,8 @@ function animate() {
 
   // ── 10. Project labels ──
   const tempV = new THREE.Vector3();
-  skillsNebulaGroup.children.forEach(node => {
-    if (node instanceof THREE.Mesh && node.userData.skill) {
+  solarSystems.forEach(sys => {
+    sys.planetMeshes.forEach(node => {
       const label = node.userData.labelElement;
       if (!label) return;
 
@@ -1300,7 +1371,7 @@ function animate() {
       } else {
         label.classList.remove('visible');
       }
-    }
+    });
   });
 
   renderer.render(scene, camera);
