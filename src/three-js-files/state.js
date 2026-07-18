@@ -27,6 +27,10 @@ export const appState = {
   selectedSystem: null,
   rocketOrbitAngle: 0,
   cameraFollowTarget: new THREE.Vector3(0, 0, 0),
+  autopilotState: 'inactive', // 'inactive', 'playing', 'paused'
+  autopilotSystemIndex: 0,
+  autopilotPlanetIndex: 0,
+  autopilotTimer: 0,
   smoothedTarget: new THREE.Vector3(0, 0, 0),
   defaultCameraOffset: new THREE.Vector3(0, 8, 28),
 

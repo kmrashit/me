@@ -9,6 +9,7 @@ import { setupRocket, updateRocketAnimation } from './three-js-files/rocket.js';
 import { setupWarpStars, setupCelestialBodies, updateEnvironmentAnimation } from './three-js-files/environment.js';
 import { setupNebulaSkills, updateSolarSystemsAnimation } from './three-js-files/solarSystems.js';
 import { applyConfigToUI, setupCategoryChips, setupInteraction, updateHover, updateLabels } from './three-js-files/ui.js';
+import { updateAutopilot } from './three-js-files/autopilot.js';
 
 async function initApp(visitorName) {
   try {
@@ -138,6 +139,8 @@ function animate() {
 
   updateHover();
   updateLabels(appState.renderer);
+
+  updateAutopilot(delta);
 
   appState.renderer.render(appState.scene, appState.camera);
 }

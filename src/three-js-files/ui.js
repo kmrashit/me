@@ -179,6 +179,7 @@ export function setupInteraction() {
   const closeBtn = document.getElementById('close-details-btn');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
+      stopAutopilot();
       shiftUniverseOnEscape();
       document.getElementById('details-card').classList.remove('visible');
       document.getElementById('details-card').classList.add('hidden');
@@ -198,6 +199,7 @@ export function setupInteraction() {
   const escapeBtn = document.getElementById('escape-system-btn');
   if (escapeBtn) {
     escapeBtn.addEventListener('click', () => {
+      stopAutopilot();
       shiftUniverseOnEscape();
       document.getElementById('details-card').classList.remove('visible');
       document.getElementById('details-card').classList.add('hidden');
@@ -210,6 +212,49 @@ export function setupInteraction() {
       updateSpeed(appState.previousSpeed);
 
       escapeBtn.classList.add('hidden');
+    });
+  }
+
+  const autopilotBtn = document.getElementById('autopilot-btn');
+  if (autopilotBtn) {
+    autopilotBtn.addEventListener('click', () => {
+      if (appState.autopilotState === 'inactive') {
+        appState.autopilotState = 'playing';
+
+        // Align autopilot to current selection
+        const visibleSystems = appState.solarSystems.filter(
+          sys => appState.activeCategory === 'all' || sys.category === appState.activeCategory
+        );
+        if (appState.selectedSystem) {
+          const sysIdx = visibleSystems.indexOf(appState.selectedSystem);
+          if (sysIdx !== -1) {
+            appState.autopilotSystemIndex = sysIdx;
+
+            if (appState.selectedNode) {
+              const planetIdx = appState.selectedSystem.planetMeshes.indexOf(appState.selectedNode);
+              if (planetIdx !== -1) {
+                appState.autopilotPlanetIndex = planetIdx;
+              } else {
+                appState.autopilotPlanetIndex = 0;
+              }
+            } else {
+              appState.autopilotPlanetIndex = 0;
+            }
+          } else {
+            appState.autopilotSystemIndex = 0;
+            appState.autopilotPlanetIndex = 0;
+          }
+        } else {
+          appState.autopilotSystemIndex = 0;
+          appState.autopilotPlanetIndex = 0;
+        }
+        appState.autopilotTimer = 0;
+      } else if (appState.autopilotState === 'playing') {
+        appState.autopilotState = 'paused';
+      } else if (appState.autopilotState === 'paused') {
+        appState.autopilotState = 'playing';
+      }
+      updateAutopilotButtonUI();
     });
   }
 
@@ -340,6 +385,7 @@ export function showEscapePopup() {
 }
 
 export function handleSelection(foundSys, clickedMesh) {
+  stopAutopilot();
   if (foundSys) {
     if (appState.activeCategory === 'all' || foundSys.category === appState.activeCategory) {
 
@@ -421,6 +467,7 @@ export function onClick() {
     handleSelection(foundSys, clickedMesh);
   } else {
     if (appState.selectedSystem) {
+      stopAutopilot();
       shiftUniverseOnEscape();
       appState.selectedSystem = null;
       appState.rocketState = 'returning';
@@ -566,4 +613,28 @@ export function updateLabels(renderer) {
       }
     });
   });
+}
+
+export function updateAutopilotButtonUI() {
+  const btn = document.getElementById('autopilot-btn');
+  if (!btn) return;
+
+  btn.classList.remove('playing', 'paused');
+
+  if (appState.autopilotState === 'playing') {
+    btn.classList.add('playing');
+    btn.textContent = '⏸ PAUSE AUTOPILOT';
+  } else if (appState.autopilotState === 'paused') {
+    btn.classList.add('paused');
+    btn.textContent = '▶ RESUME AUTOPILOT';
+  } else {
+    btn.textContent = '▶ START AUTOPILOT';
+  }
+}
+
+export function stopAutopilot() {
+  if (appState.autopilotState !== 'inactive') {
+    appState.autopilotState = 'inactive';
+    updateAutopilotButtonUI();
+  }
 }

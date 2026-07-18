@@ -566,6 +566,67 @@ h1.gradient-text {
   height: 4px !important;
 }
 
+/* Autopilot Row and Button */
+.autopilot-row {
+  margin-top: 12px !important;
+}
+
+.autopilot-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.autopilot-btn:hover {
+  background: rgba(0, 240, 255, 0.16);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.autopilot-btn:active {
+  transform: translateY(0);
+}
+
+.autopilot-btn.playing {
+  background: rgba(255, 59, 112, 0.08);
+  border-color: rgba(255, 59, 112, 0.3);
+  color: #ff3b70;
+}
+
+.autopilot-btn.playing:hover {
+  background: rgba(255, 59, 112, 0.16);
+  border-color: #ff3b70;
+  box-shadow: 0 0 12px rgba(255, 59, 112, 0.4);
+}
+
+.autopilot-btn.paused {
+  background: rgba(0, 255, 210, 0.08);
+  border-color: rgba(0, 255, 210, 0.3);
+  color: #00ffd2;
+}
+
+.autopilot-btn.paused:hover {
+  background: rgba(0, 255, 210, 0.16);
+  border-color: #00ffd2;
+  box-shadow: 0 0 12px rgba(0, 255, 210, 0.4);
+}
+
+
 /* 3. Details Panel (Right) */
 .details-card {
   top: 24px;
