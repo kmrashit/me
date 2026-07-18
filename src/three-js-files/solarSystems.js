@@ -1,6 +1,51 @@
 import * as THREE from 'three';
 import { appState } from './state.js';
 
+function getCollisionFreePosition(radius, existingSystems, targetY, minZ, maxZ, isWrapping = false) {
+  let attempts = 0;
+  const maxAttempts = 150;
+  const safetyMargin = 6.0; // Comfort distance between systems
+
+  while (attempts < maxAttempts) {
+    attempts++;
+
+    let y = targetY;
+    if (isWrapping) {
+      // Stagger Y when wrapping to stagger vertical layout
+      y = 135 + Math.random() * 30;
+    }
+
+    const x = (Math.random() - 0.5) * 16;
+    const zSign = Math.random() > 0.5 ? 1 : -1;
+    const z = zSign * (minZ + Math.random() * (maxZ - minZ));
+
+    const candidate = new THREE.Vector3(x, y, z);
+
+    let collision = false;
+    for (const other of existingSystems) {
+      if (other.group) {
+        const otherPos = other.group.position;
+        const dist = candidate.distanceTo(otherPos);
+        const minDist = radius + (other.radius || 8) + safetyMargin;
+        if (dist < minDist) {
+          collision = true;
+          break;
+        }
+      }
+    }
+
+    if (!collision) {
+      return candidate;
+    }
+  }
+
+  // Fallback
+  const x = (Math.random() - 0.5) * 16;
+  const zSign = Math.random() > 0.5 ? 1 : -1;
+  const z = zSign * (minZ + Math.random() * (maxZ - minZ));
+  return new THREE.Vector3(x, targetY + (isWrapping ? Math.random() * 30 : 0), z);
+}
+
 export function setupNebulaSkills() {
   appState.skillsNebulaGroup = new THREE.Group();
   appState.scene.add(appState.skillsNebulaGroup);
@@ -48,12 +93,17 @@ export function setupNebulaSkills() {
     else if (domProf === 'medium') { minZ = 13; maxZ = 20; }
     else { minZ = 20; maxZ = 28; }
 
-    const x = (Math.random() - 0.5) * 16;
-    const zSign = Math.random() > 0.5 ? 1 : -1;
-    const z = zSign * (minZ + Math.random() * (maxZ - minZ));
+    const sunRadius = 0.8 + catSkills.length * 0.1;
+    const maxOrbitRadius = sunRadius + 1.0 + Math.max(0, catSkills.length - 1) * 1.2;
+
     const catKeys = Object.keys(categoriesMap);
     const catIdx = catKeys.indexOf(cat);
-    const y = -100 + catIdx * (200 / catKeys.length);
+    const targetY = -100 + catIdx * (200 / catKeys.length);
+
+    const pos = getCollisionFreePosition(maxOrbitRadius, appState.solarSystems, targetY, minZ, maxZ, false);
+    const x = pos.x;
+    const y = pos.y;
+    const z = pos.z;
 
     const h = Math.random();
     const s = 0.7 + Math.random() * 0.2;
@@ -64,7 +114,6 @@ export function setupNebulaSkills() {
     group.position.set(x, y, z);
     appState.skillsNebulaGroup.add(group);
 
-    const sunRadius = 0.8 + catSkills.length * 0.1;
     const sunGeo = new THREE.IcosahedronGeometry(sunRadius, 2);
     const sunMat = new THREE.MeshBasicMaterial({ color: color });
     const sunMesh = new THREE.Mesh(sunGeo, sunMat);
@@ -142,8 +191,8 @@ export function setupNebulaSkills() {
     if (labelContainer) labelContainer.appendChild(sunLabel);
     sunMesh.userData.labelElement = sunLabel;
 
-    const maxOrbitRadius = sunRadius + 1.0 + Math.max(0, catSkills.length - 1) * 1.2;
-    const hitBoxGeo = new THREE.CylinderGeometry(maxOrbitRadius + 1, maxOrbitRadius + 1, 1, 32);
+    const hitBoxRadius = Math.max(sunRadius * 2.2, 4.0);
+    const hitBoxGeo = new THREE.SphereGeometry(hitBoxRadius, 16, 16);
     const hitBoxMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
     const hitBox = new THREE.Mesh(hitBoxGeo, hitBoxMat);
     group.add(hitBox);
@@ -160,7 +209,8 @@ export function setupNebulaSkills() {
       hitBox,
       orbitLines,
       planetMeshes,
-      sunLabel
+      sunLabel,
+      radius: maxOrbitRadius
     });
   });
 
@@ -202,13 +252,16 @@ export function updateSolarSystemsAnimation() {
     sys.group.position.y -= mappedSpeed * 0.3;
 
     if (sys.group.position.y < -140) {
-      sys.group.position.y = 140;
-      sys.group.position.x = (Math.random() - 0.5) * 16;
-
-      const zSign = Math.random() > 0.5 ? 1 : -1;
-      const minZ = sys.corridorRange.min;
-      const maxZ = sys.corridorRange.max;
-      sys.group.position.z = zSign * (minZ + Math.random() * (maxZ - minZ));
+      const otherSystems = appState.solarSystems.filter(s => s !== sys);
+      const freePos = getCollisionFreePosition(
+        sys.radius || 8,
+        otherSystems,
+        140,
+        sys.corridorRange.min,
+        sys.corridorRange.max,
+        true
+      );
+      sys.group.position.copy(freePos);
     }
 
     const sysWorldPos = new THREE.Vector3();

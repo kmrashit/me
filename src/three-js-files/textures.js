@@ -150,3 +150,83 @@ export function generateMeteoriteTexture() {
   }
   return new THREE.CanvasTexture(canvas);
 }
+
+export function generateSunburstTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  const cx = 256;
+  const cy = 256;
+
+  // Clear background (transparent)
+  ctx.clearRect(0, 0, 512, 512);
+
+  // 1. Radial glow (smooth soft fallback background)
+  const glowGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 180);
+  glowGrad.addColorStop(0.0, 'rgba(255, 255, 255, 1.0)');
+  glowGrad.addColorStop(0.1, 'rgba(255, 253, 245, 0.95)');
+  glowGrad.addColorStop(0.2, 'rgba(255, 240, 220, 0.75)');
+  glowGrad.addColorStop(0.4, 'rgba(255, 200, 150, 0.35)');
+  glowGrad.addColorStop(0.7, 'rgba(255, 150, 80, 0.08)');
+  glowGrad.addColorStop(1.0, 'rgba(255, 100, 50, 0.0)');
+  ctx.fillStyle = glowGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 250, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 2. Draw sharp spikes/rays (like a compass rose or lens flare starburst)
+  const numRays = 48;
+  for (let i = 0; i < numRays; i++) {
+    const angle = (i / numRays) * Math.PI * 2;
+    
+    // Determine the ray length
+    // Make cardinal directions (0, 90, 180, 270 deg) and diagonals (45, 135...) longer
+    let maxLength = 80 + Math.random() * 60;
+    const isCardinal = (i % (numRays / 4) === 0);
+    const isDiagonal = (i % (numRays / 8) === 0 && !isCardinal);
+    
+    if (isCardinal) {
+      maxLength = 180 + Math.random() * 50;
+    } else if (isDiagonal) {
+      maxLength = 130 + Math.random() * 40;
+    } else {
+      maxLength = 50 + Math.random() * 60;
+    }
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+
+    // Draw a thin long triangle/needle
+    const gradRay = ctx.createLinearGradient(0, 0, maxLength, 0);
+    gradRay.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+    gradRay.addColorStop(0.15, 'rgba(255, 253, 245, 0.7)');
+    gradRay.addColorStop(0.5, 'rgba(255, 220, 180, 0.3)');
+    gradRay.addColorStop(1, 'rgba(255, 150, 80, 0)');
+
+    ctx.fillStyle = gradRay;
+    ctx.beginPath();
+    ctx.moveTo(0, -3);   // start at center-left
+    ctx.lineTo(maxLength, 0);  // tip of the needle
+    ctx.lineTo(0, 3);    // start at center-right
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // 3. Central white hot core
+  const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 40);
+  coreGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+  coreGrad.addColorStop(0.7, 'rgba(255, 255, 255, 1.0)');
+  coreGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+  ctx.fillStyle = coreGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 40, 0, Math.PI * 2);
+  ctx.fill();
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}

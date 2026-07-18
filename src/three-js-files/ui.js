@@ -123,10 +123,14 @@ export function setupInteraction() {
   container.addEventListener('mousemove', (e) => {
     const rect = container.getBoundingClientRect();
     appState.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    appState.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
   });
 
   let mouseDownPos = { x: 0, y: 0 };
   container.addEventListener('mousedown', (e) => {
+    const rect = container.getBoundingClientRect();
+    appState.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    appState.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     mouseDownPos = { x: e.clientX, y: e.clientY };
   });
 
@@ -175,6 +179,7 @@ export function setupInteraction() {
   const closeBtn = document.getElementById('close-details-btn');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
+      shiftUniverseOnEscape();
       document.getElementById('details-card').classList.remove('visible');
       document.getElementById('details-card').classList.add('hidden');
       appState.selectedNode = null;
@@ -184,7 +189,7 @@ export function setupInteraction() {
       const spdSlider = document.getElementById('speed-slider');
       if (spdSlider) spdSlider.value = appState.previousSpeed;
       updateSpeed(appState.previousSpeed);
-      
+
       const escapeBtn = document.getElementById('escape-system-btn');
       if (escapeBtn) escapeBtn.classList.add('hidden');
     });
@@ -193,6 +198,7 @@ export function setupInteraction() {
   const escapeBtn = document.getElementById('escape-system-btn');
   if (escapeBtn) {
     escapeBtn.addEventListener('click', () => {
+      shiftUniverseOnEscape();
       document.getElementById('details-card').classList.remove('visible');
       document.getElementById('details-card').classList.add('hidden');
       appState.selectedNode = null;
@@ -202,7 +208,7 @@ export function setupInteraction() {
       const spdSlider = document.getElementById('speed-slider');
       if (spdSlider) spdSlider.value = appState.previousSpeed;
       updateSpeed(appState.previousSpeed);
-      
+
       escapeBtn.classList.add('hidden');
     });
   }
@@ -248,6 +254,52 @@ export function updateSpeed(speed) {
   }
 }
 
+export function shiftUniverseOnEscape() {
+  if (!appState.selectedSystem) return;
+
+  const offsetY = appState.selectedSystem.group.position.y;
+  if (offsetY === 0) return;
+
+  // 1. Shift all solar systems
+  appState.solarSystems.forEach(sys => {
+    sys.group.position.y -= offsetY;
+  });
+
+  // 2. Shift rocket position
+  if (appState.rocketGroup) {
+    appState.rocketGroup.position.y -= offsetY;
+  }
+
+  // 3. Shift camera and targets
+  if (appState.camera) {
+    appState.camera.position.y -= offsetY;
+  }
+  if (appState.cameraFollowTarget) {
+    appState.cameraFollowTarget.y -= offsetY;
+  }
+  if (appState.smoothedTarget) {
+    appState.smoothedTarget.y -= offsetY;
+  }
+
+  // 4. Shift comet particles
+  appState.cometParticles.forEach(p => {
+    if (p.mesh) {
+      p.mesh.position.y -= offsetY;
+    }
+  });
+
+  // 5. Shift background stars
+  if (appState.stars && appState.starPositions) {
+    for (let i = 0; i < appState.starCount; i++) {
+      const y1 = appState.starPositions.getY(i * 2);
+      const y2 = appState.starPositions.getY(i * 2 + 1);
+      appState.starPositions.setY(i * 2, y1 - offsetY);
+      appState.starPositions.setY(i * 2 + 1, y2 - offsetY);
+    }
+    appState.starPositions.needsUpdate = true;
+  }
+}
+
 export function showEscapePopup() {
   let popup = document.getElementById('escape-popup');
   if (!popup) {
@@ -272,14 +324,14 @@ export function showEscapePopup() {
     popup.style.pointerEvents = 'none';
     popup.style.opacity = '0';
     popup.style.transition = 'opacity 0.3s, top 0.3s';
-    
+
     const uiContainer = document.querySelector('.ui-container');
     if (uiContainer) uiContainer.appendChild(popup);
   }
-  
+
   popup.style.opacity = '1';
   popup.style.top = '15%';
-  
+
   if (appState.escapePopupTimeout) clearTimeout(appState.escapePopupTimeout);
   appState.escapePopupTimeout = setTimeout(() => {
     popup.style.opacity = '0';
@@ -290,7 +342,7 @@ export function showEscapePopup() {
 export function handleSelection(foundSys, clickedMesh) {
   if (foundSys) {
     if (appState.activeCategory === 'all' || foundSys.category === appState.activeCategory) {
-      
+
       const isSameSystem = (appState.selectedSystem === foundSys);
 
       if (!isSameSystem) {
@@ -330,8 +382,16 @@ export function onClick() {
   appState.raycaster.setFromCamera(appState.mouse, appState.camera);
   const allClickables = [];
   appState.solarSystems.forEach(sys => {
-    allClickables.push(...sys.planetMeshes, sys.sunMesh, sys.hitBox);
-    if (sys.corona) allClickables.push(sys.corona);
+    const isMatch = (appState.activeCategory === 'all' || sys.category === appState.activeCategory);
+    if (isMatch) {
+      allClickables.push(...sys.planetMeshes, sys.sunMesh);
+      if (sys.corona) allClickables.push(sys.corona);
+      
+      // Only include hitbox if system is not currently selected to allow click-away/escape
+      if (appState.selectedSystem !== sys) {
+        allClickables.push(sys.hitBox);
+      }
+    }
   });
   const intersects = appState.raycaster.intersectObjects(allClickables);
 
@@ -361,6 +421,7 @@ export function onClick() {
     handleSelection(foundSys, clickedMesh);
   } else {
     if (appState.selectedSystem) {
+      shiftUniverseOnEscape();
       appState.selectedSystem = null;
       appState.rocketState = 'returning';
       document.getElementById('details-card').classList.remove('visible');
@@ -391,28 +452,20 @@ export function showSkillDetails(skill) {
   sName.textContent = skill.name;
   sCat.textContent = skill.category;
   sDesc.textContent = skill.description;
-
-  const prof = skill.proficiency.toLowerCase();
+  let fillWidth = `${skill.percentage}%`;
+  let orbitDesc = skill.glossary
+  let prof = skill.percentage > 75 ? 'high' : skill.percentage > 50 ? 'medium' : 'low';
   sProf.className = 'proficiency-badge';
-
-  let fillWidth = '0%';
-  let orbitDesc = '';
 
   if (prof === 'high') {
     sProf.textContent = 'Expert Proficiency';
     sProf.classList.add('badge-high');
-    fillWidth = '90%';
-    orbitDesc = 'Inner Sphere (Closest to rocket core)';
   } else if (prof === 'medium') {
     sProf.textContent = 'Moderate Proficiency';
     sProf.classList.add('badge-medium');
-    fillWidth = '65%';
-    orbitDesc = 'Middle Sphere (Intermediate orbit)';
   } else {
-    sProf.textContent = 'Basic Familiarity';
+    sProf.textContent = 'Basic Proficiency';
     sProf.classList.add('badge-low');
-    fillWidth = '35%';
-    orbitDesc = 'Outer Sphere (Periphery orbit)';
   }
 
   sPercent.textContent = fillWidth;
@@ -431,7 +484,10 @@ export function updateHover() {
   appState.raycaster.setFromCamera(appState.mouse, appState.camera);
   const allPlanets = [];
   appState.solarSystems.forEach(sys => {
-    allPlanets.push(...sys.planetMeshes);
+    const isMatch = (appState.activeCategory === 'all' || sys.category === appState.activeCategory);
+    if (isMatch) {
+      allPlanets.push(...sys.planetMeshes);
+    }
   });
   const intersects = appState.raycaster.intersectObjects(allPlanets);
 

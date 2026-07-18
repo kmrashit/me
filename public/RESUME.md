@@ -6,7 +6,7 @@ Bengaluru, KA | 📧 [kmr.ashit@gmail.com](mailto:kmr.ashit@gmail.com) | 📱 +9
 
 ---
 
-Results-driven Tech Lead with 6+ years of experience in building scalable backend systems, microservices architectures, and IoT platforms. Expertise in leading cross-functional teams, architecting high-performance applications, and optimizing data pipelines processing terabytes of telemetry data. Proven track record in Electric Mobility, Healthcare Technology, and Logistics sectors. Currently pursuing an MBA in Financial Management.
+Tech Lead with 6+ years of experience in building scalable backend systems, microservices architectures, and IoT platforms. Expertise in leading cross-functional teams, architecting high-performance applications, and optimizing data pipelines processing terabytes of telemetry data. Proven track record in Electric Mobility, Healthcare Technology, and Logistics sectors. Currently pursuing an MBA in Financial Management.
 
 ---
 

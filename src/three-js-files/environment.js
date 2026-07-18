@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { appState } from './state.js';
-import { generateSunTexture, generateMoonTexture, generateGalaxyTexture, generateMeteoriteTexture } from './textures.js';
+import { generateSunburstTexture, generateMoonTexture, generateGalaxyTexture, generateMeteoriteTexture } from './textures.js';
 
 export function setupWarpStars() {
   if (appState.stars) {
@@ -43,38 +43,23 @@ export function setupWarpStars() {
 }
 
 export function setupCelestialBodies() {
-  const sunTex = generateSunTexture();
-  const sunGeo = new THREE.IcosahedronGeometry(15, 3);
-  const sunMat = new THREE.MeshBasicMaterial({
+  const sunTex = generateSunburstTexture();
+  const sunMat = new THREE.SpriteMaterial({
     map: sunTex,
-    color: new THREE.Color(0xffffff).multiplyScalar(4), // brighter
-    toneMapped: false
+    color: 0xffffff,
+    transparent: true,
+    blending: THREE.AdditiveBlending
   });
-  const sun = new THREE.Mesh(sunGeo, sunMat);
-  sun.position.set(350, 350, -150);
+  const sun = new THREE.Sprite(sunMat);
+  sun.scale.set(35, 35, 1.0);
+  sun.position.set(100, 100, -100);
   appState.scene.add(sun);
-
-  const coronaGeo = new THREE.SphereGeometry(32, 24, 24);
-  const coronaMat = new THREE.MeshBasicMaterial({
-    color: 0xffaa44, transparent: true, opacity: 0.2, side: THREE.BackSide, blending: THREE.AdditiveBlending
-  });
-  const corona = new THREE.Mesh(coronaGeo, coronaMat);
-  corona.position.copy(sun.position);
-  appState.scene.add(corona);
-
-  const flareGeo = new THREE.SphereGeometry(50, 24, 24);
-  const flareMat = new THREE.MeshBasicMaterial({
-    color: 0xff3300, transparent: true, opacity: 0.15, side: THREE.BackSide, blending: THREE.AdditiveBlending
-  });
-  const flare = new THREE.Mesh(flareGeo, flareMat);
-  flare.position.copy(sun.position);
-  appState.scene.add(flare);
 
   const sunLight = new THREE.PointLight(0xffddaa, 3.0, 1000);
   sunLight.position.copy(sun.position);
   appState.scene.add(sunLight);
 
-  appState.celestialBodies.push({ mesh: sun, corona, flare, type: 'sun', rotSpeed: 0.001 });
+  appState.celestialBodies.push({ mesh: sun, type: 'sun', rotSpeed: 0.019 });
 
   const moonConfigs = [
     { pos: new THREE.Vector3(-45, -15, 35), size: 2.5 },
@@ -182,7 +167,7 @@ export function updateEnvironmentAnimation(elapsed) {
 
   appState.celestialBodies.forEach(body => {
     if (body.type === 'sun') {
-      body.mesh.rotation.y += body.rotSpeed;
+      body.mesh.material.rotation += body.rotSpeed * 0.05;
       if (body.corona) {
         body.corona.scale.setScalar(1 + Math.sin(elapsed * 1.5) * 0.02);
         body.corona.material.opacity = 0.22 + Math.sin(elapsed * 2.0) * 0.02;

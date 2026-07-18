@@ -4,240 +4,320 @@
       "name": "Node.js / Bunjs",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Tech Lead with 6+ years experience. Architected core microservices at Oben Electric, Diagnostics Labs module at Visit Health, and TapTap ERP at Kabra Logitech.",
       "description": "Event-driven, non-blocking I/O runtime. Experienced in building high-throughput services, handling streams, cluster setups, and custom server architectures."
     },
     {
       "name": "Redis",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Used extensively at Oben Electric and Visit Health for caching strategies, session management, and BullMQ background task processing.",
       "description": "In-memory data structure store used as a database, cache, and message broker. Advanced usage in pub/sub patterns and caching strategies."
     },
     {
       "name": "Microservices",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Designed and scaled microservices powering customer applications, web platforms, and internal dashboards at Oben Electric with sub-second API latency.",
       "description": "Designing distributed systems, service boundaries, inter-service communication (REST, gRPC, event-driven), and service registries."
     },
     {
       "name": "Saga Pattern",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Applied Saga choreography/orchestration pattern in distributed systems to maintain eventual consistency across microservices.",
       "description": "Designing distributed transactions in microservices architectures using choreography or orchestration approaches to maintain data consistency."
     },
     {
       "name": "Event Loop",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Expert knowledge of macro/microtask queues, execution stack, and performance tuning for high-throughput backend services.",
       "description": "Deep understanding of Node.js event loop phases, microtasks/macrotasks scheduling, call stack execution, and performance tuning."
     },
     {
       "name": "JavaScript",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Full-stack scripting and advanced ES6+ features across all professional roles since 2019, including async concurrency and memory profile optimizations.",
       "description": "Advanced ES6+ JavaScript, asynchronous programming (Promises/async-await), closures, scoping, prototypes, and memory management."
     },
     {
       "name": "TypeScript",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Utilized as primary backend language at Oben Electric, Visit Health, and Kabra Logitech to write strictly typed, modular, and maintainable services.",
       "description": "Strictly typed superset of JS. Strong knowledge of custom types, generics, interfaces, and decorators for scalable codebases."
     },
     {
       "name": "System Design",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Designed scalable systems handling terabytes of EV telemetry data and distributed healthcare integrations with high availability and low latency.",
       "description": "Designing highly scalable, available, and fault-tolerant architectures. Load balancing, horizontal scaling, database sharding, and caching."
     },
     {
       "name": "SOLID Principles",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Core engineering practices applied across Oben Electric and Visit Health codebases to ensure highly decoupled and testable service modules.",
       "description": "Designing clean, modular, and maintainable software based on Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles."
     },
     {
       "name": "Data Structures",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "In-depth computer science grounding. Qualified GATE 2020. Strong application of graphs and spatial search trees in geospatial routing.",
       "description": "Deep understanding of linear and non-linear structures, binary trees, heaps, graphs, hashing, and complexity analysis."
     },
     {
       "name": "Algorithms",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Robust foundation in algorithmic complexity. Applied to vehicle routing, route optimization, and data deduplication in ERP and IoT tracking platforms.",
       "description": "Asymptotic analysis, divide & conquer, greedy methods, dynamic programming, graph traversal, and complexity classes (P vs NP)."
     },
     {
       "name": "Operating Systems",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Strong understanding of memory allocation, process scheduling, and concurrency, applied when optimizing Node.js clustered servers and IoT device interactions.",
       "description": "CPU scheduling, process synchronization, memory management (paging/virtual memory), file systems, and deadlocks."
     },
     {
       "name": "Databases (Theory)",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Deep understanding of relational algebra, B-trees, normalization, transaction isolation levels (ACID), and concurrency protocols.",
       "description": "Relational model algebra, normalization theory (up to BCNF), transaction concurrency control, and crash recovery."
     },
     {
       "name": "OOPs",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Design patterns, inheritance, and dependency injection implemented in TypeScript and Go microservices across Oben Electric, Visit Health, and Kabra.",
       "description": "Core Object-Oriented Programming principles including inheritance, polymorphism, encapsulation, abstraction, and object relationships."
     },
     {
       "name": "QuestDB",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Utilized at Oben Electric for high-throughput time-series ingestion and real-time SQL analysis of connected electric motorcycle telemetry.",
       "description": "Fast time-series database designed for high-throughput ingestion and real-time SQL analytics on vehicle telemetry."
     },
     {
       "name": "ClickHouse",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Used at Oben Electric for analytical reporting and processing of large-scale, historical vehicle telemetry datasets.",
       "description": "Fast, column-oriented database management system for online analytical processing (OLAP) on telemetry data."
     },
     {
       "name": "Kafka",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Architected event-driven data streaming pipelines to handle real-time vehicle metrics ingestion and processing.",
       "description": "Distributed event streaming platform. Architected event-driven pipelines for telemetry ingestion and pub/sub communication."
     },
     {
       "name": "MQTT",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Implemented secure MQTT telemetry transmission and communication protocols for Oben Electric's connected vehicle systems.",
       "description": "Lightweight publish/subscribe messaging protocol optimized for resource-constrained telemetry devices in EV systems."
     },
     {
       "name": "Uber H3",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Utilized Uber H3 hexagonal spatial indexing at Oben Electric for mapping vehicle telemetry, geofencing, and proximity analytics.",
       "description": "Hexagonal hierarchical spatial index. Used for geographic visualization, vehicle location mapping, and telemetry queries."
     },
     {
       "name": "BullMQ",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Implemented BullMQ at Oben Electric to queue asynchronous background jobs, retry failed API requests, and rate-limit internal tasks.",
       "description": "Redis-backed message queue for handling asynchronous jobs, rate-limiting, and background task processing in Node.js."
     },
     {
       "name": "Payment Integrations",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Designed transaction and refund workflows integrating Razorpay, CashFree, PayPal, and Pine Labs at Visit Health and Oben Electric.",
       "description": "Integrating payment processors like PayPal, Pine Labs, CashFree and Razorpay, handling complex webhook flows, subscription lifecycles, and transaction security."
     },
     {
       "name": "Docker / Podman",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Containerized Node.js and TypeScript microservices for local staging and Kubernetes cluster deployments across all roles.",
       "description": "Containerizing applications, writing optimized multi-stage Dockerfiles, managing container orchestration, and volume mounting."
     },
     {
       "name": "PostgreSQL",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Designed schemas, optimized slow queries, and managed indexes for Visit Health diagnostics services and pixelMind systems.",
       "description": "Relational database design, writing complex SQL queries, index optimization, execution plan analysis, and connection pooling."
     },
     {
       "name": "MongoDB",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Primary NoSQL DB across Kabra (TapTap ERP), Visit Health, and PixelMind. Developed aggregation pipelines for driver and diagnostic booking reports.",
       "description": "NoSQL document storage, schema design for high growth, aggregation pipelines, replica sets, and indexing strategies."
     },
     {
       "name": "AWS Core Services",
       "category": "DevOps",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Managed application deployments and monitoring using EC2, S3, RDS, CloudWatch, and IAM at Kabra Logitech and Oben Electric.",
       "description": "Deploying apps using EC2, RDS, S3, IAM, CloudWatch, and Lambda. Infrastructure as Code (Terraform) integration."
     },
     {
       "name": "Computer Networks",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "OSI model, TCP/IP protocols, and network security concepts applied when configuring secure local microservice environments.",
       "description": "OSI stack layers, TCP/IP protocols, routing algorithms (OSPF, BGP), congestion control, and network security."
     },
     {
       "name": "Computer Architecture",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Understanding of memory hierarchy and instruction sets, applied when optimizing server scripts and cache setups.",
       "description": "Instruction pipelining, addressing modes, memory hierarchy, cache optimization, and I/O interface design."
     },
     {
       "name": "DuckDB",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Used for serverless, low-overhead analytics on local CSV/Parquet files to generate business intelligence metrics.",
       "description": "Embedded analytical database engine designed for fast local analytical queries and serverless data processing."
     },
     {
       "name": "Go",
       "category": "Backend",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Contributed compatibility patches to Liftbridge (Go-based Kafka alternative) and developed performant backend utility scripts.",
       "description": "Statically typed compiled language used for writing lightweight microservices and low-overhead CLI tools."
     },
     {
       "name": "Ollama & vLLM",
       "category": "AI & ML",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Deployed and integrated local models (vLLM/Ollama) to build private, low-latency text-generation agents and text embeddings.",
       "description": "Running, scaling, and optimizing large language models (LLMs) locally, generating text and managing vector embeddings."
     },
     {
       "name": "RAG",
       "category": "AI & ML",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Built retrieval-augmented pipelines integrating vector databases and local LLMs to ground agent replies on internal documents.",
       "description": "Retrieval-Augmented Generation (RAG) is a technique that improves the accuracy and reliability of language models by grounding their responses in external knowledge bases."
     },
     {
       "name": "Liftbridge",
       "category": "Streaming & IoT",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Contributed Termux/Android compatibility patches to the Liftbridge open-source project to run event streams on mobile devices.",
       "description": "Lightweight distributed message log providing queueing and streaming. Contributed porting patches for Termux/Android."
     },
     {
       "name": "Python",
       "category": "Data Science",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Used Python for data engineering scripting, ETL pipelines using Apache Airflow, and running local AI model evaluation tasks.",
       "description": "Writing automation scripts, basic data visualization, and data analysis using Pandas, NumPy, and Matplotlib."
     },
     {
       "name": "Kubernetes",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Designed and managed Kubernetes deployment configs and service definitions for microservice environments.",
       "description": "Container orchestration, writing basic YAML configs for deployments, services, ingress, and configmaps."
     },
     {
       "name": "GraphQL",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Designed unified GraphQL gateway schemas to fetch patient diagnostics and booking histories from diverse diagnostic providers.",
       "description": "Designing schemas, writing resolvers, optimizing query execution, and integrating Apollo Client/Server."
     },
     {
       "name": "CI/CD Pipelines",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "Set up GitHub Actions pipelines for automated code linting, unit testing, and deployment triggers.",
       "description": "Setting up build and deployment pipelines using GitHub Actions and GitLab CI, auto-testing, and security scanning."
     },
     {
       "name": "WebSockets",
       "category": "Backend",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Built real-time Queue Management Systems (QMS) and live vehicle tracking dashboards using native WebSockets and socket connection pooling.",
       "description": "Implementing real-time bi-directional communication, socket connection management, heartbeat mechanisms, and scalability."
     },
     {
       "name": "Compiler Design",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Academic foundation. Comprehension of parsing, AST creation, and lexical analysis, aiding in custom query parser construction.",
       "description": "Lexical analysis, parsing techniques (LL/LR parser construction), syntax-directed translation, and intermediate code generation."
     },
     {
       "name": "Microprocessors",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Intel 8085 architecture knowledge, assembly programming, and interrupts, applied when interfacing with telemetry device firmware.",
       "description": "8085 architecture, instruction sets, memory/peripheral interfacing, assembly programming, and interrupts."
     },
     {
       "name": "Vector DB",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "Deployed vector databases to store, index, and query high-dimensional embeddings for semantic search in RAG applications.",
       "description": "Specialized databases for storing and querying high-dimensional vector embeddings in AI/ML search applications."
     }
   ]

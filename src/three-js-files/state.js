@@ -27,6 +27,7 @@ export const appState = {
   selectedSystem: null,
   rocketOrbitAngle: 0,
   cameraFollowTarget: new THREE.Vector3(0, 0, 0),
+  smoothedTarget: new THREE.Vector3(0, 0, 0),
   defaultCameraOffset: new THREE.Vector3(0, 8, 28),
 
   raycaster: new THREE.Raycaster(),

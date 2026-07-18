@@ -94,8 +94,6 @@ function onWindowResize() {
   appState.renderer.setSize(container.clientWidth, container.clientHeight);
 }
 
-let smoothedTarget = new THREE.Vector3(0, 0, 0);
-
 function updateCamera(mappedSpeed) {
   if (appState.camera) {
     const targetFov = appState.baseFov + (mappedSpeed / 20) * 12;
@@ -105,14 +103,14 @@ function updateCamera(mappedSpeed) {
     }
 
     const desiredTarget = appState.rocketState !== 'idle' ? appState.cameraFollowTarget : new THREE.Vector3(0, 0, 0);
-    const prevSmoothed = smoothedTarget.clone();
-    smoothedTarget.lerp(desiredTarget, 0.05);
+    const prevSmoothed = appState.smoothedTarget.clone();
+    appState.smoothedTarget.lerp(desiredTarget, 0.05);
     
-    const targetDelta = smoothedTarget.clone().sub(prevSmoothed);
+    const targetDelta = appState.smoothedTarget.clone().sub(prevSmoothed);
     appState.camera.position.add(targetDelta);
     
     if (appState.controls) {
-      appState.controls.target.copy(smoothedTarget);
+      appState.controls.target.copy(appState.smoothedTarget);
     }
 
     if (appState.currentSpeed > 7) {
