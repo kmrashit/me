@@ -4,240 +4,320 @@
       "name": "Node.js / Bunjs",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Event-driven, non-blocking I/O runtime. Experienced in building high-throughput services, handling streams, cluster setups, and custom server architectures."
     },
     {
       "name": "Redis",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "In-memory data structure store used as a database, cache, and message broker. Advanced usage in pub/sub patterns and caching strategies."
     },
     {
       "name": "Microservices",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Designing distributed systems, service boundaries, inter-service communication (REST, gRPC, event-driven), and service registries."
     },
     {
       "name": "Saga Pattern",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Designing distributed transactions in microservices architectures using choreography or orchestration approaches to maintain data consistency."
     },
     {
       "name": "Event Loop",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Deep understanding of Node.js event loop phases, microtasks/macrotasks scheduling, call stack execution, and performance tuning."
     },
     {
       "name": "JavaScript",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Advanced ES6+ JavaScript, asynchronous programming (Promises/async-await), closures, scoping, prototypes, and memory management."
     },
     {
       "name": "TypeScript",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Strictly typed superset of JS. Strong knowledge of custom types, generics, interfaces, and decorators for scalable codebases."
     },
     {
       "name": "System Design",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Designing highly scalable, available, and fault-tolerant architectures. Load balancing, horizontal scaling, database sharding, and caching."
     },
     {
       "name": "SOLID Principles",
       "category": "Architecture",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Designing clean, modular, and maintainable software based on Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles."
     },
     {
       "name": "Data Structures",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Deep understanding of linear and non-linear structures, binary trees, heaps, graphs, hashing, and complexity analysis."
     },
     {
       "name": "Algorithms",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Asymptotic analysis, divide & conquer, greedy methods, dynamic programming, graph traversal, and complexity classes (P vs NP)."
     },
     {
       "name": "Operating Systems",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "CPU scheduling, process synchronization, memory management (paging/virtual memory), file systems, and deadlocks."
     },
     {
       "name": "Databases (Theory)",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Relational model algebra, normalization theory (up to BCNF), transaction concurrency control, and crash recovery."
     },
     {
       "name": "OOPs",
       "category": "Computer Science",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Core Object-Oriented Programming principles including inheritance, polymorphism, encapsulation, abstraction, and object relationships."
     },
     {
       "name": "QuestDB",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Fast time-series database designed for high-throughput ingestion and real-time SQL analytics on vehicle telemetry."
     },
     {
       "name": "ClickHouse",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Fast, column-oriented database management system for online analytical processing (OLAP) on telemetry data."
     },
     {
       "name": "Kafka",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Distributed event streaming platform. Architected event-driven pipelines for telemetry ingestion and pub/sub communication."
     },
     {
       "name": "MQTT",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Lightweight publish/subscribe messaging protocol optimized for resource-constrained telemetry devices in EV systems."
     },
     {
       "name": "Uber H3",
       "category": "Streaming & IoT",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Hexagonal hierarchical spatial index. Used for geographic visualization, vehicle location mapping, and telemetry queries."
     },
     {
       "name": "BullMQ",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Redis-backed message queue for handling asynchronous jobs, rate-limiting, and background task processing in Node.js."
     },
     {
       "name": "Payment Integrations",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Integrating payment processors like PayPal, Pine Labs, CashFree and Razorpay, handling complex webhook flows, subscription lifecycles, and transaction security."
     },
     {
       "name": "Docker / Podman",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Containerizing applications, writing optimized multi-stage Dockerfiles, managing container orchestration, and volume mounting."
     },
     {
       "name": "PostgreSQL",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Relational database design, writing complex SQL queries, index optimization, execution plan analysis, and connection pooling."
     },
     {
       "name": "MongoDB",
       "category": "Databases",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "NoSQL document storage, schema design for high growth, aggregation pipelines, replica sets, and indexing strategies."
     },
     {
       "name": "AWS Core Services",
       "category": "DevOps",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Deploying apps using EC2, RDS, S3, IAM, CloudWatch, and Lambda. Infrastructure as Code (Terraform) integration."
     },
     {
       "name": "Computer Networks",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "OSI stack layers, TCP/IP protocols, routing algorithms (OSPF, BGP), congestion control, and network security."
     },
     {
       "name": "Computer Architecture",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Instruction pipelining, addressing modes, memory hierarchy, cache optimization, and I/O interface design."
     },
     {
       "name": "DuckDB",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Embedded analytical database engine designed for fast local analytical queries and serverless data processing."
     },
     {
       "name": "Go",
       "category": "Backend",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Statically typed compiled language used for writing lightweight microservices and low-overhead CLI tools."
     },
     {
       "name": "Ollama & vLLM",
       "category": "AI & ML",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Running, scaling, and optimizing large language models (LLMs) locally, generating text and managing vector embeddings."
     },
     {
       "name": "RAG",
       "category": "AI & ML",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Retrieval-Augmented Generation (RAG) is a technique that improves the accuracy and reliability of language models by grounding their responses in external knowledge bases."
     },
     {
       "name": "Liftbridge",
       "category": "Streaming & IoT",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Lightweight distributed message log providing queueing and streaming. Contributed porting patches for Termux/Android."
     },
     {
       "name": "Python",
       "category": "Data Science",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Writing automation scripts, basic data visualization, and data analysis using Pandas, NumPy, and Matplotlib."
     },
     {
       "name": "Kubernetes",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Container orchestration, writing basic YAML configs for deployments, services, ingress, and configmaps."
     },
     {
       "name": "GraphQL",
       "category": "Backend",
       "proficiency": "high",
+      "percentage": 87,
+      "glossary": "",
       "description": "Designing schemas, writing resolvers, optimizing query execution, and integrating Apollo Client/Server."
     },
     {
       "name": "CI/CD Pipelines",
       "category": "DevOps",
       "proficiency": "low",
+      "percentage": 42,
+      "glossary": "",
       "description": "Setting up build and deployment pipelines using GitHub Actions and GitLab CI, auto-testing, and security scanning."
     },
     {
       "name": "WebSockets",
       "category": "Backend",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Implementing real-time bi-directional communication, socket connection management, heartbeat mechanisms, and scalability."
     },
     {
       "name": "Compiler Design",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Lexical analysis, parsing techniques (LL/LR parser construction), syntax-directed translation, and intermediate code generation."
     },
     {
       "name": "Microprocessors",
       "category": "Computer Science",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "8085 architecture, instruction sets, memory/peripheral interfacing, assembly programming, and interrupts."
     },
     {
       "name": "Vector DB",
       "category": "Databases",
       "proficiency": "medium",
+      "percentage": 67,
+      "glossary": "",
       "description": "Specialized databases for storing and querying high-dimensional vector embeddings in AI/ML search applications."
     }
   ]

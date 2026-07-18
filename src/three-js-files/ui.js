@@ -184,7 +184,7 @@ export function setupInteraction() {
       const spdSlider = document.getElementById('speed-slider');
       if (spdSlider) spdSlider.value = appState.previousSpeed;
       updateSpeed(appState.previousSpeed);
-      
+
       const escapeBtn = document.getElementById('escape-system-btn');
       if (escapeBtn) escapeBtn.classList.add('hidden');
     });
@@ -202,7 +202,7 @@ export function setupInteraction() {
       const spdSlider = document.getElementById('speed-slider');
       if (spdSlider) spdSlider.value = appState.previousSpeed;
       updateSpeed(appState.previousSpeed);
-      
+
       escapeBtn.classList.add('hidden');
     });
   }
@@ -272,14 +272,14 @@ export function showEscapePopup() {
     popup.style.pointerEvents = 'none';
     popup.style.opacity = '0';
     popup.style.transition = 'opacity 0.3s, top 0.3s';
-    
+
     const uiContainer = document.querySelector('.ui-container');
     if (uiContainer) uiContainer.appendChild(popup);
   }
-  
+
   popup.style.opacity = '1';
   popup.style.top = '15%';
-  
+
   if (appState.escapePopupTimeout) clearTimeout(appState.escapePopupTimeout);
   appState.escapePopupTimeout = setTimeout(() => {
     popup.style.opacity = '0';
@@ -290,7 +290,7 @@ export function showEscapePopup() {
 export function handleSelection(foundSys, clickedMesh) {
   if (foundSys) {
     if (appState.activeCategory === 'all' || foundSys.category === appState.activeCategory) {
-      
+
       const isSameSystem = (appState.selectedSystem === foundSys);
 
       if (!isSameSystem) {
@@ -391,27 +391,24 @@ export function showSkillDetails(skill) {
   sName.textContent = skill.name;
   sCat.textContent = skill.category;
   sDesc.textContent = skill.description;
+  let fillWidth = `${skill.percentage}%`;
 
-  const prof = skill.proficiency.toLowerCase();
+  let prof = skill.percentage > 75 ? 'high' : skill.percentage > 50 ? 'medium' : 'low';
   sProf.className = 'proficiency-badge';
 
-  let fillWidth = '0%';
-  let orbitDesc = '';
+  let orbitDesc = skill.point;
 
   if (prof === 'high') {
     sProf.textContent = 'Expert Proficiency';
     sProf.classList.add('badge-high');
-    fillWidth = '90%';
     orbitDesc = 'Inner Sphere (Closest to rocket core)';
   } else if (prof === 'medium') {
     sProf.textContent = 'Moderate Proficiency';
     sProf.classList.add('badge-medium');
-    fillWidth = '65%';
     orbitDesc = 'Middle Sphere (Intermediate orbit)';
   } else {
-    sProf.textContent = 'Basic Familiarity';
+    sProf.textContent = 'Basic Proficiency';
     sProf.classList.add('badge-low');
-    fillWidth = '35%';
     orbitDesc = 'Outer Sphere (Periphery orbit)';
   }
 
