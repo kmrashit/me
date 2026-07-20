@@ -1,8 +1,6 @@
-keeping this one 
-
 # ASHIT KUMAR
 **Tech Lead | Node.js | 6+ Years Experience**
-Bengaluru, KA | 📧 [kmr.ashit@gmail.com](mailto:kmr.ashit@gmail.com) | 📱 +91-9053220180 | 💻 [github.com/ashit1303](https://github.com/ashit1303) | 🔗 [linkedin.com/in/kmrashit](https://www.linkedin.com/in/kmrashit/)
+Bengaluru, KA | 📧 [kmr.ashit@gmail.com](mailto:kmr.ashit@gmail.com) | 📱 +91-9053220180 | 💻 [github.com/kmrashit](https://github.com/kmrashit) | 🔗 [linkedin.com/in/kmrashit](https://www.linkedin.com/in/kmrashit/)
 
 ---
 
