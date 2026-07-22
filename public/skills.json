@@ -282,7 +282,7 @@
     },
     {
       "name": "Linux",
-      "category": "Tpols",
+      "category": "Tools",
       "proficiency": "high",
       "percentage": 85,
       "glossary": "Used Linux environments for backend development, production debugging, server administration, scripting, and deployment workflows.",
