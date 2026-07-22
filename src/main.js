@@ -106,10 +106,10 @@ function updateCamera(mappedSpeed) {
     const desiredTarget = appState.rocketState !== 'idle' ? appState.cameraFollowTarget : new THREE.Vector3(0, 0, 0);
     const prevSmoothed = appState.smoothedTarget.clone();
     appState.smoothedTarget.lerp(desiredTarget, 0.05);
-
+    
     const targetDelta = appState.smoothedTarget.clone().sub(prevSmoothed);
     appState.camera.position.add(targetDelta);
-
+    
     if (appState.controls) {
       appState.controls.target.copy(appState.smoothedTarget);
     }
@@ -146,12 +146,7 @@ function animate() {
 }
 
 window.onload = () => {
-
   startIntro((visitorName) => {
-    // Intro done, main 3D scene starting: force landscape — update overlay message
-    if (rotateMsg) {
-      rotateMsg.textContent = 'This experience is best viewed in landscape mode. Please turn your device horizontally.';
-    }
     initApp(visitorName);
   });
 };
