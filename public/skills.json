@@ -1,51 +1,51 @@
 {
   "skills": [
     {
-      "name": "Node.js / Bunjs",
+      "name": "Oben Electric",
+      "category": "Organisation",
+      "proficiency": "high",
+      "percentage": 96,
+      "glossary": "Led cross-functional engineering teams across Backend, Frontend, Data Analytics, Firmware, and DevOps while architecting scalable EV platforms, IoT infrastructure, and telemetry analytics.",
+      "description": "Fast-growing electric motorcycle company focused on sustainable mobility. Led 7+ engineering projects, built scalable microservices, secured IoT communication for EVs, optimized analytics over terabytes of vehicle telemetry data, and managed critical systems handling payments and sensitive operational data."
+    },
+    {
+      "name": "Visit Health Pvt Ltd",
+      "category": "Organisation",
+      "proficiency": "high",
+      "percentage": 94,
+      "glossary": "Owned and scaled the diagnostics platform by integrating leading healthcare partners, implementing Kafka-based synchronization, Airflow automation, and analytics systems.",
+      "description": "Digital healthcare platform offering OPD, diagnostics, consultations, insurance, and wellness services. Led the diagnostics module, integrated major laboratory providers, automated operational workflows, improved database performance, built reporting tools, and contributed to a 500% business expansion over three years."
+    },
+    {
+      "name": "Kabra Logitech",
+      "category": "Organisation",
+      "proficiency": "medium",
+      "percentage": 82,
+      "glossary": "Developed logistics ERP features including route optimization, vehicle tracking, delivery workflows, and AWS auto-scaling deployment.",
+      "description": "Transportation and fleet management company providing ERP solutions for logistics operations. Developed fleet tracking, load planning, reporting, employee attendance, door-to-door delivery features, and implemented AWS Elastic Beanstalk auto-scaling for production workloads."
+    },
+    {
+      "name": "PixelMind IT Solutions",
+      "category": "Organisation",
+      "proficiency": "medium",
+      "percentage": 78,
+      "glossary": "Built backend systems for CRM and SaaS products including school management and queue management solutions for international clients.",
+      "description": "Software development company delivering CRM and enterprise applications for global clients. Developed core backend modules for Skoolgo school management platform and QMS queue management system, including transportation tracking, timetable management, PTA records, and performance optimizations."
+    },
+    {
+      "name": "Node.js / Bun.js",
       "category": "Backend",
       "proficiency": "high",
-      "percentage": 92,
-      "glossary": "Tech Lead with 6+ years experience. Architected core microservices at Oben Electric, Diagnostics Labs module at Visit Health, and TapTap ERP at Kabra Logitech.",
-      "description": "Event-driven, non-blocking I/O runtime. Expert in building high-throughput services, handling streams, cluster setups, and custom server architectures for EV telemetry and healthcare platforms."
-    },
-    {
-      "name": "Redis",
-      "category": "Databases",
-      "proficiency": "high",
-      "percentage": 90,
-      "glossary": "Used extensively at Oben Electric and Visit Health for caching strategies, session management, and BullMQ background task processing.",
-      "description": "In-memory data structure store used as a database, cache, and message broker. Advanced usage in pub/sub patterns, distributed locking, and high-availability caching strategies."
-    },
-    {
-      "name": "Microservices",
-      "category": "Architecture",
-      "proficiency": "high",
-      "percentage": 92,
-      "glossary": "Designed and scaled microservices powering customer applications, web platforms, and internal dashboards at Oben Electric with sub-second API latency.",
-      "description": "Designing distributed systems, defining service boundaries, inter-service communication (REST, gRPC, event-driven), and managing service registries for high-scale EV and healthcare systems."
-    },
-    {
-      "name": "Saga Pattern",
-      "category": "Architecture",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Applied Saga choreography/orchestration pattern in distributed systems to maintain eventual consistency across microservices.",
-      "description": "Designing distributed transactions in microservices architectures using choreography or orchestration approaches to maintain data consistency without 2PC locks."
-    },
-    {
-      "name": "Event Loop",
-      "category": "Backend",
-      "proficiency": "high",
-      "percentage": 95,
-      "glossary": "Expert knowledge of macro/microtask queues, execution stack, and performance tuning for high-throughput backend services.",
-      "description": "Deep understanding of Node.js event loop phases, microtasks/macrotasks scheduling, call stack execution, and performance tuning to prevent blocking operations."
+      "percentage": 94,
+      "glossary": "Tech Lead with 6+ years of experience building high-performance backend systems using Node.js and Bun.js. Architected scalable microservices for EV, Healthcare, and Logistics platforms, with strong expertise in asynchronous programming, Event Loop internals, stream processing, worker threads, clustering, and performance optimization for latency-sensitive production workloads.",
+      "description": "Expert in designing scalable backend services using Node.js and Bun.js, with deep understanding of the Event Loop, execution context, call stack, microtask and macrotask queues, streams, clustering, worker threads, memory management, profiling, and non-blocking I/O to build highly efficient production systems."
     },
     {
       "name": "JavaScript",
       "category": "Backend",
       "proficiency": "high",
       "percentage": 92,
-      "glossary": "Full-stack scripting and advanced ES6+ features across all professional roles since 2019, including async concurrency and memory profile optimizations.",
+      "glossary": "Full-time scripting and advanced ES6+ features across all professional roles since 2019, including async concurrency and memory profile optimizations.",
       "description": "Advanced ES6+ JavaScript, asynchronous programming (Promises/async-await), closures, scoping, prototypes, and memory management for performant server-side applications."
     },
     {
@@ -53,24 +53,264 @@
       "category": "Backend",
       "proficiency": "high",
       "percentage": 92,
-      "glossary": "Utilized as primary backend language at Oben Electric, Visit Health, and Kabra Logitech to write strictly typed, modular, and maintainable services.",
+      "glossary": "Utilized as primary backend language at Oben Electric, and Kabra Logitech to write strictly typed, modular, and maintainable services.",
       "description": "Strictly typed superset of JS. Strong knowledge of custom types, generics, interfaces, and decorators for scalable, enterprise-grade codebases."
     },
     {
-      "name": "System Design",
-      "category": "Architecture",
+      "name": "Payment Integrations",
+      "category": "Backend",
       "proficiency": "high",
-      "percentage": 90,
-      "glossary": "Designed scalable systems handling terabytes of EV telemetry data and distributed healthcare integrations with high availability and low latency.",
-      "description": "Designing highly scalable, available, and fault-tolerant architectures. Load balancing, horizontal scaling, database sharding, and caching for mission-critical systems."
+      "percentage": 88,
+      "glossary": "Designed transaction and refund workflows integrating Razorpay, CashFree, PayPal, and Pine Labs at Visit Health and Oben Electric.",
+      "description": "Integrating payment processors like PayPal, Pine Labs, CashFree and Razorpay, handling complex webhook flows, subscription lifecycles, and transaction security."
     },
     {
-      "name": "SOLID Principles",
-      "category": "Architecture",
+      "name": "WebSockets",
+      "category": "Backend",
+      "proficiency": "medium",
+      "percentage": 70,
+      "glossary": "Built real-time Queue Management Systems (QMS) and live vehicle tracking dashboards using native WebSockets and socket connection pooling.",
+      "description": "Implementing real-time bi-directional communication, socket connection management, heartbeat mechanisms, and scalability."
+    },
+    {
+      "name": "GraphQL",
+      "category": "Backend",
+      "proficiency": "high",
+      "percentage": 88,
+      "glossary": "Designed unified GraphQL gateway schemas to fetch patient diagnostics and booking histories from diverse diagnostic providers.",
+      "description": "Designing schemas, writing resolvers, optimizing query execution, and integrating Apollo Client/Server for flexible data fetching."
+    },
+    {
+      "name": "Python",
+      "category": "Data Science",
+      "proficiency": "low",
+      "percentage": 39,
+      "glossary": "Used Python for data engineering scripting, ETL pipelines using Apache Airflow, and running local AI model evaluation tasks.",
+      "description": "Used Python for automation scripts, ETL utilities, data processing workflows, and AI experimentation."
+    },
+    {
+      "name": "Go",
+      "category": "Backend",
+      "proficiency": "low",
+      "percentage": 32,
+      "glossary": "Contributed to Liftbridge open-source project and explored Go for performance-oriented backend utilities and systems programming.",
+      "description": "Statically typed compiled language used for writing lightweight microservices and low-overhead CLI tools."
+    },
+    {
+      "name": "MySQL",
+      "category": "Database",
+      "proficiency": "high",
+      "percentage": 92,
+      "glossary": "Designed and optimized relational databases for healthcare, EV, and logistics platforms, focusing on high-performance queries, transactional integrity, and scalable data models supporting mission-critical production systems.",
+      "description": "Experienced in schema design, normalization, indexing strategies, query optimization, execution plan analysis, joins, stored procedures, transactions, locking, isolation levels, replication fundamentals, partitioning, and performance tuning for high-throughput OLTP workloads."
+    },
+    {
+      "name": "Redis",
+      "category": "Databases",
+      "proficiency": "high",
+      "percentage": 91,
+      "glossary": "Leveraged Redis extensively across production systems for low-latency caching, BullMQ job queues, distributed locking, session management, rate limiting, and real-time data access, significantly reducing database load and improving application responsiveness.",
+      "description": "Hands-on experience with Redis as a cache, message broker, and in-memory datastore. Implemented cache invalidation strategies, Pub/Sub messaging, distributed locks, TTL-based caching, atomic operations, queues with BullMQ, and performance optimization for high-concurrency backend services."
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Databases",
+      "proficiency": "medium",
+      "percentage": 70,
+      "glossary": "Worked with PostgreSQL for relational data modeling, query optimization, indexing, and transactional workloads.",
+      "description": "Relational database design, writing complex SQL queries, index optimization, execution plan analysis, and connection pooling."
+    },
+    {
+      "name": "MongoDB",
+      "category": "Databases",
       "proficiency": "high",
       "percentage": 90,
-      "glossary": "Core engineering practices applied across Oben Electric and Visit Health codebases to ensure highly decoupled and testable service modules.",
-      "description": "Designing clean, modular, and maintainable software based on Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles."
+      "glossary": "Primary NoSQL DB across Kabra (TapTap ERP), PixelMind and Oben Electric. Developed aggregation pipelines for driver and diagnostic booking reports.",
+      "description": "NoSQL document storage, schema design for high growth, aggregation pipelines, replica sets, and indexing strategies."
+    },
+    {
+      "name": "ClickHouse",
+      "category": "Databases",
+      "proficiency": "high",
+      "percentage": 88,
+      "glossary": "Used at Oben Electric for analytical reporting and processing of large-scale, historical vehicle telemetry datasets.",
+      "description": "Fast, column-oriented database management system for online analytical processing (OLAP) on massive telemetry datasets."
+    },
+    {
+      "name": "QuestDB",
+      "category": "Databases",
+      "proficiency": "high",
+      "percentage": 88,
+      "glossary": "Utilized at Oben Electric for high-throughput time-series ingestion and real-time SQL analysis of connected electric motorcycle telemetry.",
+      "description": "Fast time-series database designed for high-throughput ingestion and real-time SQL analytics on vehicle telemetry and IoT sensor data."
+    },
+    {
+      "name": "DuckDB",
+      "category": "Databases",
+      "proficiency": "medium",
+      "percentage": 65,
+      "glossary": "Used for analytical experimentation, local OLAP queries, and processing structured datasets.",
+      "description": "Embedded analytical database engine designed for fast local analytical queries and serverless data processing."
+    },
+    {
+      "name": "Apache Parquet",
+      "category": "Databases",
+      "proficiency": "high",
+      "percentage": 84,
+      "glossary": "Used Parquet format for efficient storage and analytical processing of large-scale telemetry and structured datasets, enabling optimized data access patterns for reporting and analytics workflows.",
+      "description": "Columnar storage format optimized for analytical workloads. Experience with schema-based data storage, compression, efficient column pruning, and integration with data processing systems for handling large datasets and OLAP use cases."
+    },
+    {
+      "name": "Qdrant",
+      "category": "Databases",
+      "proficiency": "low",
+      "percentage": 45,
+      "glossary": "Used Qdrant as a vector database for storing and retrieving embeddings in RAG pipelines, enabling semantic search, context retrieval, and knowledge-grounded responses for AI applications.",
+      "description": "Vector similarity search engine optimized for AI applications. Experience with collection management, vector indexing, similarity queries, metadata filtering, embedding storage, and integrating Qdrant into retrieval-augmented generation workflows."
+    },
+    {
+      "name": "Ollama & vLLM",
+      "category": "AI & ML",
+      "proficiency": "medium",
+      "percentage": 72,
+      "glossary": "Deployed and integrated local LLM runtimes using Ollama and vLLM for private, low-latency AI applications, experimentation, and internal agent workflows requiring controlled inference environments.",
+      "description": "Experience running and optimizing open-source language models locally, configuring inference servers, managing model serving workflows, improving response latency, and integrating generated outputs with backend applications."
+    },
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "category": "AI & ML",
+      "proficiency": "high",
+      "percentage": 82,
+      "glossary": "Designed RAG-based AI workflows using AWS Bedrock, embeddings, vector databases, and retrieval pipelines to provide context-aware responses grounded on internal knowledge sources.",
+      "description": "Building RAG architectures involving document ingestion, chunking strategies, embedding generation, vector similarity search, retrieval optimization, prompt augmentation, and LLM response generation using managed and self-hosted models."
+    },
+    {
+      "name": "AWS Bedrock",
+      "category": "AI & ML",
+      "proficiency": "medium",
+      "percentage": 75,
+      "glossary": "Integrated AWS Bedrock foundation models into backend systems to build scalable AI-powered applications with secure access to enterprise knowledge and controlled model interactions.",
+      "description": "Working with Bedrock models, inference APIs, prompt engineering, knowledge retrieval workflows, model selection, and integrating foundation models into production backend services."
+    },
+    {
+      "name": "Embeddings & Vector Databases",
+      "category": "AI & ML",
+      "proficiency": "high",
+      "percentage": 80,
+      "glossary": "Implemented semantic search and knowledge retrieval pipelines using embeddings and vector storage systems to improve contextual understanding in AI applications.",
+      "description": "Experience with embedding generation, similarity search, vector indexing, retrieval optimization, metadata filtering, and integrating vector databases into RAG-based systems."
+    },
+    {
+      "name": "Graph based AI memory",
+      "category": "AI & ML",
+      "proficiency": "medium",
+      "percentage": 68,
+      "glossary": "Explored and integrated open-source graph memory approaches to maintain contextual relationships, improve agent reasoning, and enable persistent knowledge across AI interactions.",
+      "description": "Understanding of graph-based memory architectures, entity relationships, knowledge graphs, persistent context management, and combining graph retrieval with LLM-powered agent workflows."
+    },
+    {
+      "name": "Kafka",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 86,
+      "glossary": "Designed and managed self-hosted Kafka infrastructure on cloud environments for reliable event-driven communication, supporting real-time EV telemetry ingestion, data synchronization, and asynchronous processing workflows across distributed services.",
+      "description": "Hands-on experience deploying and operating Kafka clusters, configuring brokers, topics, partitions, replication, consumer groups, retention policies, and monitoring. Built scalable streaming pipelines for telemetry processing, service-to-service communication, and high-volume data movement while ensuring fault tolerance and performance optimization."
+    },
+    {
+      "name": "MQTT",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 90,
+      "glossary": "Implemented secure MQTT telemetry transmission and communication protocols for Oben Electric's connected vehicle systems.",
+      "description": "Lightweight publish/subscribe messaging protocol optimized for resource-constrained telemetry devices in EV systems."
+    },
+    {
+      "name": "BullMQ",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 90,
+      "glossary": "Implemented BullMQ at Oben Electric to queue asynchronous background jobs, retry failed API requests, and rate-limit internal tasks.",
+      "description": "Redis-backed message queue for handling asynchronous jobs, rate-limiting, delayed jobs, and background task processing in Node.js."
+    },
+    {
+      "name": "Uber H3",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 88,
+      "glossary": "Utilized Uber H3 hexagonal spatial indexing at Oben Electric for mapping vehicle telemetry, geofencing, and proximity analytics.",
+      "description": "Hexagonal hierarchical spatial index. Used for geographic visualization, vehicle location mapping, and efficient telemetry queries."
+    },
+    {
+      "name": "GitHub",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 88,
+      "glossary": "Used GitHub extensively for collaborative software development, open-source contributions, code reviews, version management, and maintaining production-grade backend systems across EV, Healthcare, and Logistics projects.",
+      "description": "Experienced with Git-based workflows including branching strategies, pull requests, code reviews, merge management, repository maintenance, issue tracking, release management, and CI/CD integrations. Contributed to open-source projects and maintained clean, collaborative development practices for scalable engineering teams."
+    },
+    {
+      "name": "Docker / Podman",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 84,
+      "glossary": "Containerized backend services across development and production environments, creating reproducible deployments for microservices, analytics workloads, and internal platforms while simplifying development, testing, and CI/CD workflows.",
+      "description": "Experienced in building optimized multi-stage Dockerfiles, image optimization, container networking, volume management, Docker Compose, Podman, environment isolation, and containerizing Node.js, Go, and Python applications for scalable deployments."
+    },
+    {
+      "name": "AWS Services",
+      "category": "Tools",
+      "proficiency": "high",
+      "percentage": 87,
+      "glossary": "Built and maintained production workloads on AWS, leveraging cloud services for scalable deployments, secure infrastructure, monitoring, autoscaling, and API endpoint protection across healthcare and EV platforms.",
+      "description": "Hands-on experience with EC2, IAM, VPC, Security Groups, S3, CloudWatch, Elastic Beanstalk, Route 53, API Gateway, Secrets Manager, Lambda, Auto Scaling, and CloudFront, with a focus on secure, reliable, and highly available backend infrastructure."
+    },
+    {
+      "name": "Kubernetes",
+      "category": "Tools",
+      "proficiency": "low",
+      "percentage": 45,
+      "glossary": "Exposure to Kubernetes concepts and deployment workflows for containerized applications.",
+      "description": "Container orchestration, writing basic YAML configs for deployments, services, ingress, and configmaps."
+    },
+    {
+      "name": "CI/CD Pipelines",
+      "category": "Tools",
+      "proficiency": "medium",
+      "percentage": 65,
+      "glossary": "Worked with CI/CD workflows across production environments using GitHub Actions and Jenkins-based pipelines for automated builds, testing, validation, and deployment processes. Integrated development workflows with automated checks to improve release reliability and delivery speed.",
+      "description": "Understanding of continuous integration and deployment practices including automated testing, build automation, deployment triggers, environment-based releases, pipeline execution, and integration with tools like GitHub Actions and Jenkins. Experienced in consuming, maintaining, and improving existing pipelines while collaborating with DevOps team for production releases."
+    },
+    {
+      "name": "Linux",
+      "category": "Tpols",
+      "proficiency": "high",
+      "percentage": 85,
+      "glossary": "Used Linux environments for backend development, production debugging, server administration, scripting, and deployment workflows.",
+      "description": "Experience with shell scripting, process management, networking commands, logs, permissions, system monitoring, and troubleshooting production services."
+    },
+    {
+      "name": "k6",
+      "category": "Tools",
+      "proficiency": "medium",
+      "percentage": 65,
+      "glossary": "Integrated k6 into CI/CD pipelines at Visit Health to validate API performance thresholds before production deployments, preventing latency regressions.",
+      "description": "Developer-centric load testing tool. Writing JavaScript-based test scripts to simulate user traffic, measure RPS/latency, and identify bottlenecks in microservices."
+    },
+    {
+      "name": "Prometheus & Grafana",
+      "category": "Tools",
+      "proficiency": "medium",
+      "percentage": 55,
+      "glossary": "Built real-time monitoring dashboards for Oben Electric's EV fleet services, tracking API error rates, queue depths, and system resource utilization.",
+      "description": "Metrics collection and visualization stack. Configuring exporters, writing PromQL queries, and creating alerting rules for proactive incident response."
+    },
+    {
+      "name": "Apache Airflow",
+      "category": "Tools",
+      "proficiency": "medium",
+      "percentage": 76,
+      "glossary": "Orchestrated complex ETL pipelines at Oben Electric for aggregating vehicle telemetry data and generating daily business intelligence reports.",
+      "description": "Programmatic workflow orchestration platform. Designing DAGs for data ingestion, transformation, and scheduled reporting with dependency management and retry logic."
     },
     {
       "name": "Data Structures",
@@ -113,94 +353,6 @@
       "description": "Core Object-Oriented Programming principles including inheritance, polymorphism, encapsulation, abstraction, and object relationships for modular design."
     },
     {
-      "name": "QuestDB",
-      "category": "Databases",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Utilized at Oben Electric for high-throughput time-series ingestion and real-time SQL analysis of connected electric motorcycle telemetry.",
-      "description": "Fast time-series database designed for high-throughput ingestion and real-time SQL analytics on vehicle telemetry and IoT sensor data."
-    },
-    {
-      "name": "ClickHouse",
-      "category": "Databases",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Used at Oben Electric for analytical reporting and processing of large-scale, historical vehicle telemetry datasets.",
-      "description": "Fast, column-oriented database management system for online analytical processing (OLAP) on massive telemetry datasets."
-    },
-    {
-      "name": "Kafka",
-      "category": "Streaming & IoT",
-      "proficiency": "high",
-      "percentage": 75,
-      "glossary": "Architected event-driven data streaming pipelines to handle real-time vehicle metrics ingestion and processing.",
-      "description": "Distributed event streaming platform. Architected event-driven pipelines for telemetry ingestion, log aggregation, and pub/sub communication."
-    },
-    {
-      "name": "MQTT",
-      "category": "Streaming & IoT",
-      "proficiency": "high",
-      "percentage": 90,
-      "glossary": "Implemented secure MQTT telemetry transmission and communication protocols for Oben Electric's connected vehicle systems.",
-      "description": "Lightweight publish/subscribe messaging protocol optimized for resource-constrained telemetry devices in EV systems."
-    },
-    {
-      "name": "Uber H3",
-      "category": "Streaming & IoT",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Utilized Uber H3 hexagonal spatial indexing at Oben Electric for mapping vehicle telemetry, geofencing, and proximity analytics.",
-      "description": "Hexagonal hierarchical spatial index. Used for geographic visualization, vehicle location mapping, and efficient telemetry queries."
-    },
-    {
-      "name": "BullMQ",
-      "category": "Backend",
-      "proficiency": "high",
-      "percentage": 90,
-      "glossary": "Implemented BullMQ at Oben Electric to queue asynchronous background jobs, retry failed API requests, and rate-limit internal tasks.",
-      "description": "Redis-backed message queue for handling asynchronous jobs, rate-limiting, delayed jobs, and background task processing in Node.js."
-    },
-    {
-      "name": "Payment Integrations",
-      "category": "Backend",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Designed transaction and refund workflows integrating Razorpay, CashFree, PayPal, and Pine Labs at Visit Health and Oben Electric.",
-      "description": "Integrating payment processors like PayPal, Pine Labs, CashFree and Razorpay, handling complex webhook flows, subscription lifecycles, and transaction security."
-    },
-    {
-      "name": "Docker / Podman",
-      "category": "DevOps",
-      "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Containerized Node.js and TypeScript microservices for local staging and Kubernetes cluster deployments across all roles.",
-      "description": "Containerizing applications, writing optimized multi-stage Dockerfiles, managing container orchestration, and volume mounting."
-    },
-    {
-      "name": "PostgreSQL",
-      "category": "Databases",
-      "proficiency": "medium",
-      "percentage": 70,
-      "glossary": "Designed schemas, optimized slow queries, and managed indexes for Visit Health diagnostics services and pixelMind systems.",
-      "description": "Relational database design, writing complex SQL queries, index optimization, execution plan analysis, and connection pooling."
-    },
-    {
-      "name": "MongoDB",
-      "category": "Databases",
-      "proficiency": "high",
-      "percentage": 90,
-      "glossary": "Primary NoSQL DB across Kabra (TapTap ERP), PixelMind and Oben Electric. Developed aggregation pipelines for driver and diagnostic booking reports.",
-      "description": "NoSQL document storage, schema design for high growth, aggregation pipelines, replica sets, and indexing strategies."
-    },
-    {
-      "name": "AWS Core Services",
-      "category": "DevOps",
-      "proficiency": "medium",
-      "percentage": 70,
-      "glossary": "Managed application deployments and monitoring using EC2, S3, RDS, CloudWatch, and IAM at Kabra Logitech and Oben Electric.",
-      "description": "Deploying apps using EC2, RDS, S3, IAM, CloudWatch, and Lambda. Infrastructure as Code (Terraform) integration."
-    },
-    {
       "name": "Computer Networks",
       "category": "Computer Science",
       "proficiency": "medium",
@@ -217,86 +369,6 @@
       "description": "Instruction pipelining, addressing modes, memory hierarchy, cache optimization, and I/O interface design."
     },
     {
-      "name": "DuckDB",
-      "category": "Databases",
-      "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Used for serverless, low-overhead analytics on local CSV/Parquet files to generate business intelligence metrics.",
-      "description": "Embedded analytical database engine designed for fast local analytical queries and serverless data processing."
-    },
-    {
-      "name": "Go",
-      "category": "Backend",
-      "proficiency": "low",
-      "percentage": 45,
-      "glossary": "Contributed compatibility patches to Liftbridge (Go-based Kafka alternative) and developed performant backend utility scripts.",
-      "description": "Statically typed compiled language used for writing lightweight microservices and low-overhead CLI tools."
-    },
-    {
-      "name": "Ollama & vLLM",
-      "category": "AI & ML",
-      "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Deployed and integrated local models (vLLM/Ollama) to build private, low-latency text-generation agents and text embeddings.",
-      "description": "Running, scaling, and optimizing large language models (LLMs) locally, generating text and managing vector embeddings."
-    },
-    {
-      "name": "RAG",
-      "category": "AI & ML",
-      "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Built retrieval-augmented pipelines integrating vector databases and local LLMs to ground agent replies on internal documents.",
-      "description": "Retrieval-Augmented Generation (RAG) technique that improves the accuracy and reliability of language models by grounding their responses in external knowledge bases."
-    },
-    {
-      "name": "Liftbridge",
-      "category": "Streaming & IoT",
-      "proficiency": "low",
-      "percentage": 45,
-      "glossary": "Contributed Termux/Android compatibility patches to the Liftbridge open-source project to run event streams on mobile devices.",
-      "description": "Lightweight distributed message log providing queueing and streaming. Contributed porting patches for Termux/Android."
-    },
-    {
-      "name": "Python",
-      "category": "Data Science",
-      "proficiency": "low",
-      "percentage": 45,
-      "glossary": "Used Python for data engineering scripting, ETL pipelines using Apache Airflow, and running local AI model evaluation tasks.",
-      "description": "Writing automation scripts, basic data visualization, and data analysis using Pandas, NumPy, and Matplotlib."
-    },
-    {
-      "name": "Kubernetes",
-      "category": "DevOps",
-      "proficiency": "low",
-      "percentage": 45,
-      "glossary": "Designed and managed Kubernetes deployment configs and service definitions for microservice environments.",
-      "description": "Container orchestration, writing basic YAML configs for deployments, services, ingress, and configmaps."
-    },
-    {
-      "name": "GraphQL",
-      "category": "Backend",
-      "proficiency": "high",
-      "percentage": 88,
-      "glossary": "Designed unified GraphQL gateway schemas to fetch patient diagnostics and booking histories from diverse diagnostic providers.",
-      "description": "Designing schemas, writing resolvers, optimizing query execution, and integrating Apollo Client/Server for flexible data fetching."
-    },
-    {
-      "name": "CI/CD Pipelines",
-      "category": "DevOps",
-      "proficiency": "low",
-      "percentage": 45,
-      "glossary": "Set up GitHub Actions pipelines for automated code linting, unit testing, and deployment triggers.",
-      "description": "Setting up build and deployment pipelines using GitHub Actions and GitLab CI, auto-testing, and security scanning."
-    },
-    {
-      "name": "WebSockets",
-      "category": "Backend",
-      "proficiency": "medium",
-      "percentage": 70,
-      "glossary": "Built real-time Queue Management Systems (QMS) and live vehicle tracking dashboards using native WebSockets and socket connection pooling.",
-      "description": "Implementing real-time bi-directional communication, socket connection management, heartbeat mechanisms, and scalability."
-    },
-    {
       "name": "Compiler Design",
       "category": "Computer Science",
       "proficiency": "medium",
@@ -311,14 +383,6 @@
       "percentage": 65,
       "glossary": "Intel 8085 architecture knowledge, assembly programming, and interrupts, applied when interfacing with telemetry device firmware.",
       "description": "8085 architecture, instruction sets, memory/peripheral interfacing, assembly programming, and interrupts."
-    },
-    {
-      "name": "Vector DB",
-      "category": "Databases",
-      "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Deployed vector databases to store, index, and query high-dimensional embeddings for semantic search in RAG applications.",
-      "description": "Specialized databases for storing and querying high-dimensional vector embeddings in AI/ML search applications."
     },
     {
       "name": "Technical Mentorship",
@@ -361,28 +425,44 @@
       "description": "Defining and enforcing engineering best practices, setting up automated quality gates, and championing test-driven development (TDD) within the team."
     },
     {
-      "name": "Apache Airflow",
-      "category": "Data Science",
-      "proficiency": "medium",
-      "percentage": 68,
-      "glossary": "Orchestrated complex ETL pipelines at Oben Electric for aggregating vehicle telemetry data and generating daily business intelligence reports.",
-      "description": "Programmatic workflow orchestration platform. Designing DAGs for data ingestion, transformation, and scheduled reporting with dependency management and retry logic."
+      "name": "Application Security",
+      "category": "Security",
+      "proficiency": "high",
+      "percentage": 78,
+      "glossary": "Designed secure backend services with authentication, authorization, input validation, and protection against common web application vulnerabilities.",
+      "description": "Applied secure coding practices following OWASP Top 10 guidelines, implemented JWT/OAuth authentication, RBAC, input sanitization, CSRF/XSS/SQL Injection prevention, secure session management, encryption, audit logging, and secure handling of payment and healthcare data."
     },
     {
-      "name": "k6",
-      "category": "DevOps",
+      "name": "Cloud Security",
+      "category": "Security",
       "proficiency": "medium",
-      "percentage": 65,
-      "glossary": "Integrated k6 into CI/CD pipelines at Visit Health to validate API performance thresholds before production deployments, preventing latency regressions.",
-      "description": "Developer-centric load testing tool. Writing JavaScript-based test scripts to simulate user traffic, measure RPS/latency, and identify bottlenecks in microservices."
+      "percentage": 56,
+      "glossary": "Implemented cloud security best practices across AWS infrastructure, protecting services, APIs, and sensitive workloads.",
+      "description": "Experienced with IAM policies and roles, Security Groups, VPC networking, Secrets Manager, KMS encryption, CloudWatch monitoring, least-privilege access, secure S3 configurations, endpoint protection, SSL/TLS, and production security hardening."
     },
     {
-      "name": "Prometheus & Grafana",
-      "category": "DevOps",
+      "name": "API Security",
+      "category": "Security",
+      "proficiency": "high",
+      "percentage": 92,
+      "glossary": "Built secure APIs with authentication, authorization, rate limiting, request validation, and abuse prevention for high-traffic production systems.",
+      "description": "Implemented JWT/OAuth authentication, API Gateway security, AWS endpoint security, IP whitelisting, rate limiting, throttling, CORS policies, request signing, payload validation, API versioning, and logging to protect public and internal services."
+    },
+    {
+      "name": "IoT Security",
+      "category": "Security",
       "proficiency": "medium",
+      "percentage": 66,
+      "glossary": "Secured communication between cloud infrastructure and resource-constrained EV IoT devices through protocol hardening and secure authentication.",
+      "description": "Implemented secure device authentication, encrypted communication, certificate-based trust, firmware communication hardening, replay attack prevention, secure key management, and optimized security mechanisms for low-power embedded devices."
+    },
+    {
+      "name": "Vulnerability Assessment & Security Hardening",
+      "category": "Security",
+      "proficiency": "advanced",
       "percentage": 68,
-      "glossary": "Built real-time monitoring dashboards for Oben Electric's EV fleet services, tracking API error rates, queue depths, and system resource utilization.",
-      "description": "Metrics collection and visualization stack. Configuring exporters, writing PromQL queries, and creating alerting rules for proactive incident response."
+      "glossary": "Strong understanding of identifying, mitigating, and preventing application and infrastructure vulnerabilities across production systems.",
+      "description": "Knowledge of OWASP Top 10, SSRF, IDOR, SQL Injection, XSS, CSRF, RCE, XXE, insecure deserialization, broken authentication, privilege escalation, dependency vulnerabilities, security headers, penetration testing concepts, and infrastructure hardening with continuous monitoring and secure deployment practices."
     }
   ]
 }
