@@ -1037,9 +1037,14 @@ h1.gradient-text {
 }
 
 #rotate-overlay .phone-icon {
-  font-size: 70px;
   margin-bottom: 20px;
   animation: rotate-anim 2s infinite ease-in-out;
+  line-height: 0;
+}
+
+#rotate-overlay .phone-icon svg {
+  width: 80px;
+  height: 80px;
 }
 
 #rotate-overlay h2 {
@@ -1070,14 +1075,16 @@ h1.gradient-text {
   }
 }
 
-/* Show only on small portrait screens */
-@media (max-width: 900px) and (orientation: portrait) {
-  #rotate-overlay {
+/* During intro/boarding: force PORTRAIT — show overlay if landscape on mobile */
+@media (max-width: 1024px) and (orientation: landscape) {
+  body:has(#intro-screen) #rotate-overlay {
     display: flex;
   }
 }
 
-/* Hide rotate overlay when intro screen is active */
-body:has(#intro-screen) #rotate-overlay {
-  display: none !important;
+/* During main 3D scene (no intro screen): force LANDSCAPE — show overlay if portrait on mobile */
+@media (max-width: 900px) and (orientation: portrait) {
+  body:not(:has(#intro-screen)) #rotate-overlay {
+    display: flex;
+  }
 }
