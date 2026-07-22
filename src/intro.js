@@ -82,7 +82,10 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('class', 'launch-pad-svg');
   svg.setAttribute('viewBox', '0 0 600 450');
-  svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+  
+  // Set responsive aspect ratio: fit whole scene on portrait; align bottom and crop sky on landscape
+  const isPortrait = window.innerHeight > window.innerWidth;
+  svg.setAttribute('preserveAspectRatio', isPortrait ? 'xMidYMid meet' : 'xMidYMax slice');
 
   // SVG Definitions for Gradients/Filters
   const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');

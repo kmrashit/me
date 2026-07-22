@@ -398,3 +398,68 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  .intro-card {
+    width: calc(100% - 32px);
+    padding: 24px 20px;
+    margin: 16px;
+  }
+  .intro-card h1 {
+    font-size: 22px;
+  }
+  .intro-card p {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .input-container {
+    margin-bottom: 16px;
+  }
+  .input-container input {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  .intro-card button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Landscape short screen height adjustments (e.g. mobile landscape) */
+@media (max-height: 480px) {
+  #intro-screen {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  .intro-card {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px 30px;
+    max-width: 400px;
+  }
+  .intro-card h1 {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .intro-card p {
+    font-size: 12px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .input-container {
+    margin-bottom: 12px;
+  }
+  .input-container input {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  .intro-card button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
