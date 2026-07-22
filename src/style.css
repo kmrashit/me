@@ -1076,3 +1076,8 @@ h1.gradient-text {
     display: flex;
   }
 }
+
+/* Hide rotate overlay when intro screen is active */
+body:has(#intro-screen) #rotate-overlay {
+  display: none !important;
+}

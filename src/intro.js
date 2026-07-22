@@ -83,9 +83,14 @@ function runBoardingAnimation(stage, visitorName, onComplete, introScreen, flash
   svg.setAttribute('class', 'launch-pad-svg');
   svg.setAttribute('viewBox', '0 0 600 450');
   
-  // Set responsive aspect ratio: fit whole scene on portrait; align bottom and crop sky on landscape
+  // Set responsive aspect ratio: use original centering on desktop; optimize on mobile
   const isPortrait = window.innerHeight > window.innerWidth;
-  svg.setAttribute('preserveAspectRatio', isPortrait ? 'xMidYMid meet' : 'xMidYMax slice');
+  const isMobile = window.innerWidth < 1024;
+  let par = 'xMidYMid slice'; // default desktop
+  if (isMobile) {
+    par = isPortrait ? 'xMidYMid meet' : 'xMidYMax slice';
+  }
+  svg.setAttribute('preserveAspectRatio', par);
 
   // SVG Definitions for Gradients/Filters
   const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
